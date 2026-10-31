@@ -1,0 +1,10 @@
+1;Hasdeu;50;100
+2;Manastur;70;140
+3;Zorilor;45;95
+4;Marasti;80;170
+5;Grigorescu;35;75
+6;Buna Ziua;60;125
+7;Centru;55;135
+8;Europa;90;210
+9;Gheorgheni;40;85
+10;Iris;65;115

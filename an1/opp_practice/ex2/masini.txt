@@ -1,0 +1,11 @@
+101;bmw;galben;1000
+102;audi baha;albastru;3333
+103;maza caca;rosu;2341
+104;redwhitebaha;albastru;344322
+105;dacia duster;rosu;756675
+106;Volsvagen;galben;65
+107;Creative;albastru;342234
+
+108;Ferrari;rosu;43346
+109;Renault;albastru;457782
+110;Lada;galben;114769

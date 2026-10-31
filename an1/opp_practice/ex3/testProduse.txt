@@ -1,0 +1,3 @@
+1;iPhone 12;telefon;2020;3200
+2;Dell Inspiron;laptop;2014;1200
+3;Samsung Galaxy S21;telefon;2021;2800

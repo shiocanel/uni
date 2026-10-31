@@ -1,0 +1,139 @@
+OOP și Java: clase, moștenire, polymorfism, excepții. (OK)
+Spring Boot: creare rapidă de API, starter dependencies, controller, service, repository. (NU)
+Spring Data JPA: @Entity, JpaRepository, interogări JPQL. (NU CHIAR)
+JavaScript / TypeScript: ES6+, async/await, arrow functions, npm modules, TS tipuri. (OK)
+React (sau alt framework): componente, stări, props, virtual DOM.
+Flutter (Dart): widget-uri, build context, hot reload.
+REST / JSON: endpoint-uri, HTTP methods, coduri stare (200, 404, 500). (KINDA)
+GraphQL: query & mutation, schema, noțiunea de reducere a fetch-ului nedorit.
+SQL / MySQL: table, JOIN, SELECT/WHERE/GROUP BY, tranzacții.
+ORM (Hibernate/JPA): entity mapping, lazy vs eager fetch.
+Autentificare (OAuth2/JWT): token, refresh, Authorization: Bearer.
+CI/CD: pipeline, build, unit test, deploy, automatizare. (OK)
+Testing: unit vs integration, JUnit/Mocha, test coverage. (OK)
+Docker: imagine, container, Dockerfile.
+Kafka (mesagerie): topic, producător/ consumator (deși poate fi opțional).
+Cloud: concepte AWS (EC2, RDS, S3) și alternative Azure/GCP.
+Metodologii: Agile, scrum, code review, pair programming.
+
+
+
+
+
+
+==Spring Boot: creare rapidă de API, starter dependencies, controller, service, repository. (NU)==
+
+
+-->Spring Boot este un framework care permite dezvoltarea rapidă a aplicațiilor backend în Java.
+
+Ce este un API?
+Un API este o modalitate prin care frontend-ul comunică cu backend-ul.
+
+In Spring Boot vei vedea aproape mereu:
+Controller
+    ↓
+Service
+    ↓
+Repository
+    ↓
+Database
+===============================================================================================
+==Spring Data JPA: @Entity, JpaRepository, interogări JPQL.==
+JPA = Java Persistence API
+
+@Entity spune:
+această clasă reprezintă un tabel din baza de date.
+
+JPQL = Java Persistence Query Language
+este ca si sql doar ca lucreaza pe obiecte
+
+SELECT s
+FROM Student s
+================================================================================================
+
+==Testing: unit vs integration, JUnit/Mocha, test coverage.==
+JUnit
+JUnit este cel mai popular framework de testare pentru Java.
+biblioteca standard pentru teste Java.
+
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class CalculatorTest {
+
+    @Test
+    void testSum() {
+
+        Calculator c = new Calculator();
+
+        assertEquals(5, c.sum(2,3));
+        assertTrue(x < 5);
+        assertFalse(x > 5);
+        assertNull(res);
+        assertNotNull(res);
+    }
+}
+
+
+What is Mocha?
+Răspuns:A JavaScript testing framework used for unit and integration testing.
+
+Ce este un mock?
+Raspuns: A fake object used to replace real dependencies during testing.
+================================================================================================
+
+==CI/CD: pipeline, build, unit test, deploy, automatizare.==
+
+CI/CD =
+Continuous Integration
+Continuous Deployment
+
+
+Ce este CI/CD?
+A process that automates building, testing and deploying software.
+
+
+What is a CI/CD pipeline?
+Răspuns:
+A CI/CD pipeline is an automated sequence of steps used to build, test and deploy software.
+
+CI(continuous Integration) înseamnă: 
+programatorii integrează codul frecvent într-un repository comun.
+
+Deploy = publicarea aplicației pe server.
+
+git push
+   ↓
+build
+   ↓
+tests
+   ↓
+deploy
+================================================================================================
+
+REST / JSON: endpoint-uri, HTTP methods, coduri stare (200, 404, 500).
+
+Ce este REST?
+REST = Representational State Transfer.
+o convenție pentru comunicarea dintre client și server folosind HTTP.
+
+
+What is an endpoint?
+An endpoint is a URL through which a client accesses a resource on a server.
+
+
+JSON = JavaScript Object Notation.
+Este formatul standard pentru schimbul de date.
+================================================================================================
+
+JavaScript / TypeScript: ES6+, async/await, arrow functions, npm modules, TS tipuri.
+
+Înainte:
+function sum(a,b){
+    return a+b;
+}
+
+Modern:
+const sum = (a,b) => {
+    return a+b;
+};

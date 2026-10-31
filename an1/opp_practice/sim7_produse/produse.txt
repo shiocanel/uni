@@ -1,0 +1,10 @@
+1;Paine;Aliment;5.5
+2;Lapte;Aliment;7.0
+3;Ciocolata;Dulciuri;12.5
+4;Tricou;Imbracaminte;45.0
+5;Pantaloni;Imbracaminte;95.0
+6;Apa;Bautura;3.5
+7;Suc;Bautura;6.0
+8;Biscuiti;Dulciuri;8.0
+9;Mar;Aliment;1.5
+10;Geaca;Imbracaminte;99.9

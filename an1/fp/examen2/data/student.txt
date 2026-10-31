@@ -1,0 +1,7 @@
+1, Anton, 216
+2, Ale, 216
+3, Dragostea, 215
+4, Ioan, 211
+5, Stefan, 212
+6, Andrei, 213
+7, Ranta, 214

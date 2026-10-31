@@ -1,0 +1,5 @@
+Mazda;Mata;1234
+Dacia;Mata;4000
+Duster;Prost;2123
+Cluj;Mark;1999
+Sibiu;Prost;211110

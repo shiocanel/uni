@@ -1,0 +1,6 @@
+1;Popescu Ion;27;mate
+2;Ionescu Vasile;28;info
+3;Georgescu Ana;26;mate-info
+5;Dumitrescu Mihai;27;info
+7;Stefan Maria;26;ai
+9;Gheorghe Alex;27;info

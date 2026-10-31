@@ -1,0 +1,5 @@
+Ryzen;200;Mata;1001
+dfjms;111;Mata;22
+Giga;240;Mark;4212110
+Vasile;44;Prost;3111
+Mihai;1;Prost;123422

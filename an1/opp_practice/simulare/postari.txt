@@ -1,0 +1,10 @@
+1;Ana;Reel GRWM;Instagram
+2;Mihai;Video Gaming;TikTok
+3;Ioana;Story Q&A;Instagram
+4;Vlad;Short Vlog de campus;Youtube Shorts
+5;Maria;Live de desen digital;Twitch
+6;Andrei;Clip cu trend audio;TikTok
+7;Elena;Postare outfit;Instagram
+8;Ioan;Match Basketball;Instagram
+9;Antonio;Gaming ig;Youtube Shorts
+10;Zandrei;Workout video;TikTok

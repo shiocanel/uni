@@ -1,0 +1,10 @@
+1;iPhone 12;telefon;2020;3200
+2;Samsung Galaxy S21;telefon;2021;2800
+3;Dell Inspiron;laptop;2014;1200
+4;MacBook Pro;laptop;2018;4500
+5;Sony WH-1000XM3;audio;2019;900
+6;LG TV 2010;tv;2010;700
+7;Canon EOS 5D;camera;2008;2500
+8;iPad Air;tableta;2022;3000
+9;Lenovo ThinkPad;laptop;2016;1600
+10;Nintendo Switch;consola;2017;1400

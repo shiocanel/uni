@@ -1,0 +1,10 @@
+1;Baza de date;open;Ion,Vasile
+2;Interfata grafica;inprogress;Maria,Ana,Ion
+3;Testare backend;open;Vasile
+4;Autentificare;open;Alex
+5;Integrare API;inprogress;Ana,Mihai
+6;Configurare CI/CD;closed;George,Alex,Ion
+7;Design UI;open;Maria
+8;Optimizare query-uri;inprogress;Ion,Vasile,Ana,Mihai
+9;Scriere documentatie;closed;Andrei
+10;Fix bug login;open;Alex,Ion

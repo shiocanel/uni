@@ -1,0 +1,11 @@
+Inception;SF;2010;Leonardo DiCaprio
+Titanic;Drama;1997;Leonardo DiCaprio
+The Dark Knight;Action;2008;Christian Bale
+Interstellar;SF;2014;Matthew McConaughey
+Gladiator;Action;2000;Russell Crowe
+Joker;Drama;2019;Joaquin Phoenix
+Avengers;Action;2012;Robert Downey Jr.
+Matrix;SF;1999;Keanu Reeves
+Forrest Gump;Drama;1994;Tom Hanks
+The Godfather;Crime;1972;Al Pacino
+Film1;Gen1;2001;Actor1

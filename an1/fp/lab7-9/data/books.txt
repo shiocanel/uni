@@ -1,0 +1,9 @@
+1, 1984, A dystopian novel about surveillance and totalitarianism., George Orwell
+2, To Kill a Mockingbird, A novel exploring racial injustice in the American South., Harper Lee
+3, The Great Gatsby, A story about the American dream and tragic love., F. Scott Fitzgerald
+4, Brave New World, A futuristic society controlled by conditioning and drugs., Aldous Huxley
+5, Moby Dick, The epic tale of Captain Ahab's obsession with a white whale., Herman Melville
+6, Pride and Prejudice, A romantic novel exploring manners and misunderstandings., Jane Austen
+7, Fahrenheit 451, A dystopian world where books are banned and burned., Ray Bradbury
+8, The Hobbit, A fantasy adventure following Bilbo Baggins., J.R.R. Tolkien
+9, Crime and Punishment, A psychological exploration of guilt and redemption., Fyodor Dostoevsky

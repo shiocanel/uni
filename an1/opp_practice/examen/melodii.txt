@@ -1,0 +1,9 @@
+1;Die;Violent Viora;7
+2;Smells like Teens Spirits;Nirvana;8
+3;M'son 'Mbriacato;Giovanni;10
+4;titlu nou;Antonino;10
+5;Mega;Tarantiono;5
+6;Trieste;Sckrilex;2
+8;Mai nu stiu piese;eu;8
+9;buuu;anto;8
+10;Shape of You;Ed Sheeran;9

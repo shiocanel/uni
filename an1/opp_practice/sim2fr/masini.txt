@@ -1,0 +1,10 @@
+CJ22XYZ;VW Golf;2019;hatch
+IS99RRR;Ford Transit;2013;van
+CT55DDD;Hyundai Tucson;2023;suv
+DJ77EEE;Mercedes Sprinter;2017;van
+PH88FFF;Audi A4;2018;sedan
+AR11BBB;Skoda Octavia;2020;sedan
+B101ABC;VW Passat;2016;sedan
+B202CCC;Renault Clio;2021;hatch
+SV44GGG;Ford Focus;2015;hatch
+TM33QWE;Dacia Duster;2022;suv

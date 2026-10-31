@@ -1,0 +1,242 @@
+# Rezumat executiv
+
+Compania **Betfair România Development** face parte din Flutter Entertainment, lider global în pariuri sportive și iGaming. În rolul anunțat de *Internship Software Engineer Full-Stack – Flutter UKI (Hybrid)*, termenele „Flutter” și „UKI” se referă la **brand-ul companiei**, nu la framework-ul Flutter de la Google. Echipa “Safety” din UK&I (Regatul Unit și Irlanda) se ocupă de siguranța clienților, în sensul jocurilor responsabile și al protecției utilizatorilor. Astfel, „Safety” la Flutter Entertainment înseamnă monitorizarea și prevenirea comportamentelor de joc riscante, protejarea utilizatorilor vulnerabili (de exemplu, minori sau jucători cu potențial de dependență) și moderarea conținutului (chat, notificări) pentru un mediu sigur. Recent, Flutter a deschis un „Centru de Excelență pentru Siguranța Clienților” în Leeds (UK), în cadrul inițiativei “Play Well” pentru jocuri mai sigure. 
+
+În interviul tehnic, se va aștepta ca un candidat să cunoască elementele de bază cerute în anunț: programare orientată pe obiect (Java), dezvoltare web (JavaScript/TypeScript, HTML/CSS, framework UI modern precum React) și concepte Full-Stack (APIs REST/GraphQL, baze de date, ORM). Deși anunțul menționează React și TypeScript, cunoștințele despre **Flutter (Dart)** pot fi **nespecificate** pentru acest rol, însă ar fi un avantaj în cazul unui proiect mobil intern. La fel, deși postarea nominalizează AWS și Kafka, nu e clar ce platformă cloud folosesc – astfel, se recomandă studierea conceptele fundamentale AWS (puteau exista sisteme containerizate Docker pe AWS) și noțiuni de mesagerie (Kafka).  
+
+Raportul de față detaliază profilul companiei și al echipei *Safety*, atribuțiile unui intern Full-Stack, tehnologiile relevante (Flutter/Dart, Java, JS/TS, REST/GraphQL, SQL/MySQL, Spring Data/JPA, autentificare, CI/CD, testing, Docker, cloud), modul în care pot fi folosite LLM-urile (de ex. Claude de la Anthropic) în fluxuri de siguranță și propune un plan de pregătire de 1 săptămână înainte de interviu: teme de studiu prioritate, resurse (documentații oficiale, tutoriale, proiecte exemplu), exerciții practice, întrebări tipice de interviu (tehnice și de sistem/ comportament) cu răspunsuri-model și alocări de timp, plus liste de verificare (skill/keywords), exemple de cod SQL/Java/Flutter și diagrame relevante. Tabelarea comparativă între tehnologii (de ex. REST vs GraphQL, Flutter vs React, SQL vs NoSQL) și planificarea zilnică sub formă de tabel vor facilita înțelegerea și pregătirea. Sursele citate sunt *întotdeauna conexe (nu rezultate de căutare)* şi oferă informații actuale (până în 2026).
+
+## Profilul companiei și contextul *Safety*
+
+**Betfair Romania Development** este cel mai mare hub tehnologic al **Flutter Entertainment** (compania-mamă), având peste 2000 de angajați. Flutter Entertainment operează branduri mari de pariuri și jocuri online (FanDuel, PokerStars, Sportsbet, Betfair, Paddy Power, Sky Betting & Gaming etc.) pentru ~18 milioane de clienți la nivel global. Deviza echipei locale accentuează crearea de experiențe „captivante și sigure” pentru utilizatori. Postarea indică faptul că internul va lucra într-o **echipă front-end Safety**, orientată pe produs. Echipa *Safety* (atât online, cât și în centrul dedicat de la Leeds) se ocupă de **joaca responsabilă** („Responsible Gambling”): monitorizează tiparele de pariere, protejează segmente vulnerabile (minori, risc de dependență), impune limite voluntare (self-exclusion) și alerte pentru comportamente de risc. De exemplu, Flutter a creat un Centru de Excelență în jocuri sigure, dedicat "siguranței clienților". 
+
+În plus, „safety” poate include **moderare de conținut** (chat-uri, forumuri) în platformă, pentru a evita abuzul, frauda sau limbajul ofensator. Soluțiile moderne (incluzând AI/ML) sunt tot mai folosite: inteligența artificială poate detecta semne timpurii de joc problemă și trimite alerte personalizate jucătorului (ex: notificări “unu dintre obiceiurile tale de pariere a depășit media”). ML/AI ajută astfel să reducă monitorizarea manuală și să ofere intervenții în timp real. Menționarea în anunț a "AI-oriented mindset" sugerează că echipa *Safety* e deschisă la tehnologii AI/ML pentru analiza datelor de joc și moderare.
+
+### Responsabilități tipice în rolul Full-Stack Safety (intern)
+
+Conform descrierii postului, internul Full-Stack va **dezvolta noi funcționalități de la zero, atât în frontend cât și în backend, în context Agile**. Acestea pot include interfețe (frontend) și servicii (backend) pentru module de siguranță: de ex. pagini/alertări de „joacă responsabilă”, limitări de depozite, module de raportare comportament, etc. Principalele responsabilități menționate sunt: lucrul în echipă agilă, aliniere la bune practici de programare, și **garantarea calității codului și performanței** aplicațiilor. Se subliniază importanța comunicării: va fi necesar să colaboreze eficient cu colegii (scrum, code review) și să învețe rapid tehnologii noi.
+
+**Competențe cerute** în anunț: student/absolvent în informatică sau domeniu conex; bună cunoaștere a programării orientate pe obiect (Java preferat) și a web (HTML/CSS/JavaScript). Sunt de asemenea menționate framework-uri JS moderne (de ex. React) şi TypeScript, cunoștințe despre AWS și mesagerie Kafka. Se recomandă familiaritate cu Git și practicile de testare automată (unit/integration). Cerința „AI oriented mindset” sugerează interes pentru aplicații AI/ML (eventual Python sau biblioteci ML, deși nu e specificat). În ansamblu, postul pretenționează de la un intern abilități tehnice de bază în *full-stack development* (client și server), plus deschidere către domeniul siguranței utilizatorului. 
+
+## Tehnologii cheie de studiat
+
+Pentru pregătire, trebuie revizuite conceptele și instrumentele solicitate (și câteva adiționale). Mai jos sunt temele principale, cu explicații și resurse de referință.
+
+- **Front-end (Web și mobil)** – *JavaScript/TypeScript și framework UI*. Postul menționează React (sau alt framework JS) şi TypeScript. Așadar, cunoașterea ECMAScript modern, JSX/TSX și a unui framework component-oriented este esențială. Dacă se dorește, poate fi util și studiul Flutter (framework Google, limbaj Dart) – însă **atenție**: în contextul acestui rol „Flutter” se referă la companie, nu la SDK. Dacă nu se lucrează direct la aplicații mobile, cunoștințele Flutter sunt *nespecificate* în ofertă; totuși, pentru un interviu Full-Stack ar fi bine să cunoașteți diferențele Flutter vs. React (tabel comparativ mai jos). Flutter (Dart) permite crearea rapidă de UI native cross-platform (Android/iOS) cu *hot-reload* şi widgeturi UI bogate. React Native (JavaScript) folosește _bridge_ pentru componente native. Un bun exercițiu: creați o mică aplicație Flutter de tip counter sau listă preluată de la un backend. Cod de exemplu în Flutter (Dart):
+
+  ```dart
+  class CounterPage extends StatefulWidget {
+    @override
+    _CounterPageState createState() => _CounterPageState();
+  }
+
+  class _CounterPageState extends State<CounterPage> {
+    int _count = 0;
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+        appBar: AppBar(title: Text('Contor')),
+        body: Center(
+          child: ElevatedButton(
+            onPressed: () { setState(() { _count++; }); },
+            child: Text('Apasă de $_count ori'),
+          ),
+        ),
+      );
+    }
+  }
+  ```
+  *Resurse*: Documentația oficială Flutter (tutorial „Get started”), codelaburi și exemple Google, precum și cursuri video. Pentru React/TS, tutoriale precum oficialul reactjs.org și TypeScript Handbook.
+
+   *Exemplu de arhitectură stratificată Flutter: layer-ul Framework (Dart) comun cu librării UI (Material/Cupertino), Engine (C++) şi Embedder (platform-specific). Flutter compilează aplicațiile în cod nativ pentru performanță maximă.*
+
+- **Back-end Java (Spring Boot/JPA)** – În rolul Full-Stack, partea server va fi în Java (Spring Boot). Arhitectura tipică: aplicație Spring Boot care expune API (REST sau GraphQL) și lucrează cu baza de date (MySQL). *ORM*: Spring Data JPA (Hibernate) este folosit pentru maparea obiect-relatională. De exemplu, un `@Entity` Java și un `JpaRepository` simplu pot realiza accesul în DB:
+
+  ```java
+  @Entity 
+  public class Product {
+      @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+      private Long id;
+      private String name;
+      // ...
+  }
+  public interface ProductRepository extends JpaRepository<Product, Long> {
+      List<Product> findByNameContaining(String name);
+  }
+  ```
+  Documentația Spring Guide arată pas-cu-pas crearea unei aplicații cu Spring Data JPA. Studiu recomandat: tutoriale Spring oficiale (de ex. *Accessing Data with JPA*) și cursuri practice (ex. crearea unui serviciu CRUD în Spring Boot cu MySQL). De asemenea, Spring Security (pentru autentificare/autorizații) merită studiat: în mod uzual se folosesc protocoale precum OAuth2/JWT pentru protejarea API-urilor.
+
+- **API (REST vs GraphQL)** – Cel mai probabil, serverul Java expune API REST tradițional (JSON). **REST** presupune endpoint-uri de tip `/resource` pentru diverse operații. **GraphQL** este alternativă care permite clientului să specifice exact ce date vrea (evitând _overfetching_/_underfetching_). Dacă anunțul nu spune clar dacă folosesc GraphQL, e bine să înțelegi ambele concepte. De exemplu, cu GraphQL  o singură interogare poate înlocui apeluri multiple REST. Comparativ:
+  - *REST*: interfețe fixe pe resurse (ex: `/users`, `/orders`), necesită mai multe cereri, fixă schema răspunsurilor.
+  - *GraphQL*: un singur endpoint `/graphql`, clienții cer exact câmpurile necesare într-o query, flexibil și evolutiv pentru front-end.
+  
+   *GraphQL permite specificarea exactă a datelor necesare în query, eliminând supra/subluarea de date care apare în REST. Exemplu: cu GraphQL, clientul definește câmpurile dorite, serverul răspunde cu exact acele date.*
+
+- **Baze de date SQL (MySQL)** – În back-end se va folosi probabil o bază de date relațională (MySQL). Relația Java–DB se poate face cu JDBC/Spring Data. Practică curentă: scheme normalizate și interogări SQL cu JOIN, GROUP BY, tranzacții ACID. Exemplu de query SQL:
+  ```sql
+  SELECT u.name, COUNT(o.id) AS total_orders
+  FROM users u
+  JOIN orders o ON o.user_id = u.id
+  WHERE u.active = 1
+  GROUP BY u.name;
+  ```
+  Conform definițiilor, bazele SQL folosesc tabele și scheme fixe, ideale pentru date structurate și interogări complexe (JOIN). Prin contrast, NoSQL (ex. MongoDB) oferă scheme flexibile, scalare orizontală. Tabel comparativ mai jos. Se recomandă recitirea SQL, sintaxei JOIN, normalizare, indexuri, și un pic de NoSQL din curiozitate (dar focus pe SQL/MySQL pentru acest rol). 
+
+- **ORM (Spring Data JPA)** – Cadru Java care leagă entități Java de tabele SQL. Spring Data JPA simplifică operațiile CRUD prin interface-uri (ex. `JpaRepository`) fără SQL explicit. Studiu: crearea entităților (annotate cu `@Entity`, `@Id`, etc) și repository-uri Spring. Exemple oficiale: [30] prezintă cum „Spring Data JPA stochează și recuperează obiecte într-o DB relațională”. Este util să exersezi operațiuni CRUD prin JPA (findAll(), save(), query method).
+
+- **Autentificare/Autorizație** – Chiar dacă nu e explicit menționat în cerințe, majoritatea proiectelor enterprise implică securitate: protocoale OAuth2, token-uri JWT, autentificare bazată pe roluri. Din postare reiese că aplicațiile ar putea folosi AWS (identity services) și Kafka (mesaje securizate). În zona Full-Stack, trebuie să înțelegeți conceptele de sesiune, cookie-uri vs token-uri, plus posibile cadre folosite (Spring Security, Keycloak, Auth0 etc.). Notă: nu s-a specificat exact, deci studiați *conceptual* OAuth2 (Flow-urile Authorization Code, Implicit) și JWT (JSON Web Tokens) ca standarde curente.
+
+- **Controale de calitate (CI/CD și testare)** – Se cere cunoștințe despre CI/CD și testing automată. *CI/CD* înseamnă fluxuri automate care compilează, testează și livrează codul. De exemplu, un pipeline simplu poate include: la commit – build + unit tests, apoi deploy automat în staging, teste de integrare, și în final deploy în producție. Graficul de mai jos arată componentelor cheie (Commit→Build→Test→Staging→Prod):
+
+   *Stadii tipice într-un pipeline CI/CD: codul este comis, declanșează build-ul, testele rulează, produsul (artifactul) ajunge în stagiu și apoi în producție.*
+
+  *(Imagine: Exemplu schematic al unui pipeline CI/CD; detaliu în sursa GitLab CI/CD.)*
+
+  În practică, explorarea concretă: înțelegeți instrumente ca Jenkins, GitLab CI/GitHub Actions, și conceptele de pipeline (build artifact, medii de testare, containere Docker). 
+
+- **Testare (unit/integration)** – Abilitatea de a scrie teste automate este esențială. Pentru Java, alegeți cel puțin JUnit (teste unitare) şi poate Mockito (mockuri) pentru backend. Pentru front-end JS/TS, puteți studia testare cu Jest/Mocha sau testare end-to-end cu Cypress. Pentru Flutter există `flutter_test`. Exercițiu: scrieți un test JUnit simplu pentru metoda unui service sau un widget test Flutter care verifică UI. 
+
+- **Containere și Virtualizare** – Docker: cunoașteți noțiuni de bază despre containere: creare fișier `Dockerfile`, construire imagine, rulare container. Practică: containerizarea unui mic serviciu Spring Boot conectat la MySQL (sau un alt microserviciu). Multe implementări enterprise rulează microservicii în containere orchestrate (Kubernetes). Exercițiu: “Dockerize” un simplu API Java și un client web (sau chiar un API GraphQL cu Node.js), legate printr-o rețea Docker.
+
+- **Cloud (AWS/Azure/GCP)** – În anunț apare AWS ca exemplu de cloud. Nu sunt detalii despre ce servicii AWS se folosesc, dar bazele generale sunt necesare. Studiați concepte de *compute* (EC2 vs serverless Lambda), *stocare* (S3 vs Azure Blob vs GCS), *baze de date* gestionate (RDS, Aurora), *CI/CD* cloud (CodePipeline, Azure DevOps), și *identitate/siguranță*. Cunoștințe despre un provider major (AWS de exemplu) sunt de ajuns; conceptele sunt similare și la Azure/GCP. Exemple: auto-scalare EC2, deploy aplicații pe Elastic Beanstalk, sau serverless functions. O listă de comparație între AWS/Azure/GCP poate fi utilă. Resurse: tutoriale AWS Essentials, certificări gen AWS Certified Cloud Practitioner (sit oficial AWS).
+
+### Comparativ tehnologii
+
+| Tehnologie / caracteristică | Avantaje (exemple) | Dezavantaje / Când se evită |
+|---|---|---|
+| **Flutter (Dart)** | Cross-platform mobil & web, *hot-reload* rapid, performanță nativă ridicată (cod compilat ARM), ecosistem Google, UI bogat (widget-uri Material/Cupertino) | Comunitatea mai mică decât React, fișiere executabile mai mari, Dart mai puțin cunoscut la început |
+| **React Native (JS/TypeScript)** | Dezvoltare cross-platform mobil cu JavaScript/TS, comunitate mare, reutilizare de skill-uri web (React) | Performanță inferioară (bridge JS↔native) față de Flutter, pot exista probleme de compatibilitate între versiuni și debugging mai dificil |
+| **REST API** | Model simplu bazat pe resurse URL, foarte răspândit, caching bine susținut HTTP, control ușor al versiunii API | Overfetching/Underfetching de date (aplicații trebuie de multe ori să facă mai multe cereri); rigid când frontend-ul evoluează |
+| **GraphQL API** | Un singur endpoint, clientul cere exact câmpurile dorite, ideal pentru aplicații frontend complexe/evolutive, flexibilitate mare, analize fine pe interogări | Suprasarcină de configurare (schema+resolvers), posibil încărcare ineficientă la abuz (complexitatea query-urilor), caching mai complex de implementat |
+| **SQL (MySQL)** | Tabele relaționale, tranzacții ACID, interogări complexe cu JOIN, şiret schema, maturitate în scenarii comerciale | Scalare verticală limitată (poate necesita replici/clusterizare), schema fixă (dificil de schimbat frecvent) |
+| **NoSQL (MongoDB/Cassandra)** | Scheme flexibile (documente/cheie-valoare), scalare orizontală ridicată, ideal pentru date semi-structurate sau volume mari | Nu suportă bine tranzacții complexe (ACID limitat), lipsa de JOIN-uri sau relații complicate, consistență eventuală (CAP) |
+| **CI/CD (Jenkins/GitLab/GitHub)** | Automatizează build-test-deploy, detectează erori rapid, permite livrare continuă fără downtime; popular în DevOps | Cerință inițială de configurare, mentenanță continuă a scripturilor de pipeline, încărcare inițială a învățării (înțelegerea tuturor pașilor) |
+
+## Claude (Anthropic) și LLM-uri în fluxul de siguranță
+
+**Claude** este o serie de modele lingvistice mari (**LLM**) dezvoltate de compania **Anthropic**. Lansat în 2023 ca chatbot AI, Claude poate genera și interpreta text, răspunde întrebărilor și scrie cod. Spre exemplu, *Claude 4 Opus* este un model avansat orientat pe cod și conversații. Compania pune accent pe *Constitutional AI* (antrenare pentru siguranță) pentru a reduce output-ul nociv.
+
+În contextul „safety”, LLM-urile precum Claude pot fi integrate în fluxurile de moderare și prevenire a abuzurilor. De exemplu, ele pot analiza automat conținutul generat de utilizatori (mesaje din chat, recenzii) pentru a detecta limbaj ofensator, auto-vătămare, înşelătorii, limbaj de ură etc. Modelele de tip LLM sunt bune la **interpretarea nuanțelor limbajului** și la clasificarea conținutului conform politicilor de siguranță. Astfel, Claude poate fi folosit pentru a însoți sau filtra conținutul înainte de expunerea către public: *classifyaza textul în categorii („aprobat”, „flagged for review”, „refuzat”)*, poate sugera reacții automate sau generarea de mesaje de avertizare. De asemenea, LLM-ul poate rezuma discuții lungi și oferi moderatorilor un motivaj concis pentru deciziile sale, ajutând la scalare. 
+
+Importanța tehnologiei LLM în siguranță este ilustrată de exemple din industrie: se plasează Claude ca „un instrument specializat de moderare” care scapă de limitările filtrării bazate pe reguli simple. La ITU Online se arată că *Claude e eficient în gestionarea excepțiilor*: în loc de doar blocare de cuvinte cheie, el poate înțelege context, ton și intenție, reducând fals-pozitivele și fals-negativele. În plus, Claude (și competitorii săi) pot ajuta și în alte fluxuri de siguranță: generare de documentație de politici de securitate, analiză de jurnal (log) pentru comportamente anormale sau automatizarea unor sarcini repetitive de securitate internă. *Notă:* tehnologiile LLM trebuie folosite cu atenție la confidențialitatea datelor clienților și cu supraveghere umană acolo unde pot exista erori.  
+
+În concluzie, cunoașterea conceptelor de bază despre LLM (ex. ChatGPT, Claude) și modul în care ele pot fi aplicate la **moderarea conținutului** (trust & safety) sau **analiza comportamentului utilizator** este un plus. Deși rolul e axat pe full-stack, o *„mentalitate AI”* înseamnă a fi conștient că se pot integra servicii cognitive în soluțiile de siguranță.  
+
+## Plan de studiu prioritar (~1 săptămână înainte de interviu)
+
+**Structură:** Vom aloca ~2–4 ore zilnic pentru revizuire teoretică și exerciții practice, împărțite pe teme. Tabelul următor prezintă un program orientativ pe 7 zile. Se includ resurse de învățare (docs oficiale, tutoriale, exemple) și activități practice (mini-proiecte, cod).
+
+| Ziua | Dimineața (studii teorie/recapitulare)                      | După-amiaza (exercițiu practic/proiect)                      | Resurse recomandate                                   |
+|:----:|--------------------------------------------------------------|--------------------------------------------------------------|-------------------------------------------------------|
+| **Luni**     | *Profil firmă & responsabilități Safety:*  Citit anunțul de job și materiale Flutter Entertainment, **studiu context iGaming (responsible gaming)**.  <br>*Recapitulare Java OOP:* clase, moștenire, interfețe. | *Exercițiu Java:* Implementați 2 clase simple cu OOP (de exemplu `Player` și `Bet`), instanțiere și moștenire. <br>*Resurse*:  DeCScripting Java (Oracle/Javadoc), tutoriale OOP (Baeldung etc). | [Flutter Entertainment 2025 report](https://flutter.com/media/auxjjb0y/positive-impact-report-2025.pdf) (siguranță clienți). Curs Java OOP (Deitel, Oracle). |
+| **Marți**    | *Front-end JS/TS:* Sintaxă modernă JS (ES6+), concepte TypeScript, noțiuni React (componentă, stări, props). <br>*Structuri web:* HTML/CSS responsive basics. | *Exercițiu JS:* Scrieți o pagină simplă (HTML/JS) care apelează un API REST de test (de exemplu JSONPlaceholder) și afișează date. Încercați și în TypeScript (puțin setup). <br>*Resurse*: Documentații MDN (JS/TS) și tutoriale React. | MDN Web Docs (JS, TS) și Tutoriale React (reactjs.org). Comparativ Flutter vs React: studiați tabelul de mai sus. |
+| **Miercuri** | *Flutter (Dart) de bază:* Structura unui proiect Flutter (widget-uri, stateless/stateful), `flutter create`. <br>*DevOps devTools:* Instalați Flutter SDK și Android Studio sau VSCode, creați un proiect demo. | *Exercițiu Flutter:* Creați o mini-aplicație (de ex. un counter sau o listă statică) cu layout elementar. Experimentați „hot reload”. <br>*Resurse*: Documentația Flutter (Guides), tutoriale YouTube. | Flutter Docs: [Get started](https://docs.flutter.dev/get-started), articole/programming de bază Dart. React vs Flutter: studiați avantajele fiecăruia. |
+| **Joi**      | *Server Java & Spring Boot:* Revizuiți conceptele Spring Boot, configurare proiect Spring Initializr cu dependințe *Web* și *JPA*. <br>*ORM & JPA:* Modelul `@Entity`, `@Repository`. | *Exercițiu Spring:* Generați un microserviciu Spring Boot simplu (folosind Spring Initializr). Adăugați un `@Entity` (ex: `Customer`) și un repository JPA. Testați salvarea și citirea de obiecte (fără DB real, puteți folosi H2 memoria). <br>*Resurse*: Spring Guides, Baeldung. | Spring Getting Started [guide JPA](https://spring.io/guides/gs/accessing-data-jpa) (storage/retrieval), tutorial Spring Boot (Baeldung, Spring.io). |
+| **Vineri**   | *REST/GraphQL & API:* Diferențe fundamentale. Revizuiți noțiuni de endpoint REST. (Opțional: GraphQL prin tutorial [HowToGraphQL]). <br>*SQL/MySQL:* Noțiuni de bază SQL (SELECT, JOIN, tranzacții). | *Exercițiu API/DB:* Construiți un endpoint REST CRUD în Spring (de ex. `/customers`) conectat la o bază de date MySQL locală (sau H2). Testați cu Postman/cURL. Dacă e timp, încercați un simplu endpoint GraphQL (folosind o bibliotecă Spring GraphQL). <br>*Resurse*: Documentații Spring Web, GraphQL tutorials. | HowToGraphQL: introducere GraphQL. Ghid SQL/MySQL (w3schools, SQLZoo) și Spring Data JPA. |
+| **Sâmbătă**  | *CI/CD & Docker:* Recapitulare concepte CI/CD și practici DevOps. <br>*Cloud fundamentals:* Servicii AWS/GCP bazice (EC2, S3, RDS). | *Exercițiu DevOps:* Docker: containerizați aplicația Spring creată (scrieți un Dockerfile, construiți imagine). În paralel, initiați un pipeline simplu cu GitHub Actions (ex. build la fiecare commit). <br>*Resurse*: Tutorial Docker, GitHub Actions Docs. | GitLab CI/CD intro, tutorial Docker (docker.com), AWS docs (RDS, EC2 overview). |
+| **Duminică** | *Rezumat & puncte slabe:* Revizuiți notițele și punctele neclare (ex: autentificare, Kafka). Studiați întrebări posibile de interviu (mai jos). <br>*Intrebări comportamentale:* Pregătiți exemple personale (leadership, eșec, teamwork). | *Mock interview coding:* Răspundeți la 1-2 probleme de cod (de ex. algoritmi la grădină sau cu liste) în Java; testați-l cu cineva. <br>*Resurse*: Leetcode/HackerRank probleme simple, recensământ criterii manageriale. | Lista de întrebări tipică (mai jos). Proiecte prevăzute și exerciții practice de final de săptămână. |
+
+## Resurse recomandate
+
+- **Documentație oficială:** 
+  - *Flutter (Dart)* – site-ul oficial Flutter (docs.flutter.dev), codelaburi Google, tutorialul „Create your first Flutter app”. 
+  - *Spring Boot / JPA* – ghiduri oficiale Spring ([getting started with Spring Data JPA]), tutoriale Spring.io, Baeldung. 
+  - *GraphQL* – docs GraphQL (graphql.org) și tutorialele HowToGraphQL, Apollo GraphQL docs.
+  - *Docker & CI/CD* – site-urile oficiale Docker și Jenkins/GitLab CI/GitHub Actions pentru exemple de fișiere.
+  - *AWS/GCP/Azure* – ghiduri de început pentru fiecare (ex. AWS Cloud Practitioner Essentials).
+
+- **Tutoriale practice și cărți:** 
+  - *Udemy/YouTube* – cursuri Full-Stack Java/Angular sau React cu Spring Boot, cursuri Flutter (ex. Maximilian Schwarzmüller, Academind, etc.). 
+  - *Situri educaționale* – W3Schools (HTML/CSS/JS), GeeksforGeeks (treceți în revistă conceptele cheie prezente în tabelele de mai sus). 
+  - *Bloguri de specialitate* – Medium, SpringBlog, Flutter.dev blog.
+  - *Concursuri/Proiecte Open-Source* – examinați exemple de cod existente pe GitHub: proiecte demo Full-Stack Flutter+Spring, sau app-uri demo Flutter + GraphQL.
+
+- **Exerciții practice (mini-proiecte):** 
+  1. **Aplicație Flutter + SpringBoot**: Un UI Flutter simplu care consumă un API REST Java. De exemplu, un mini-proiect de tip „lista de sarcini” (ToDo App): Spring Boot cu endpoint `/tasks` (GET/POST/DELETE) și Flutter app care afișează, adaugă sarcini. Exersați autentificarea token (JWT) opțional.
+  2. **API Spring CRUD + MySQL**: Serviciu Java pentru gestionare entități (de ex. *Product* sau *Client*) cu operații CRUD. Folosiți Spring Data JPA și asigurați-vă că știți să scrieți câteva query-uri JPQL/SQL.
+  3. **Pipeline CI/CD**: Configurați un repository GitHub cu aplicație de mai sus și un workflow GitHub Actions (sau Jenkins) care rulează teste și apoi build-ul aplicației la commit.
+  4. **Containerizare**: Creați un fișier Dockerfile pentru serviciul Java și testați rularea containerizată (și ideal, o joncțiune *Docker Compose* cu un container MySQL + unul Spring).
+  5. **Interogări SQL**: Exersați interogări SQL complexe pe un set de date de test (de ex. baza de date `sakila` sau `employees`), inclusiv JOIN, subquery și tranzacții.
+
+Coduri exemplu:
+```sql
+-- Exemplu: calcul suma comenzilor per client (SQL/MySQL)
+SELECT c.name, SUM(o.amount) AS total_spent
+FROM customers c
+JOIN orders o ON o.customer_id = c.id
+WHERE o.order_date >= '2026-01-01'
+GROUP BY c.name;
+```
+
+```java
+// Exemplu Java Spring Data JPA (repository)
+@Entity
+public class Customer {
+    @Id @GeneratedValue
+    private Long id;
+    private String name;
+    // constructor, getter/setter
+}
+public interface CustomerRepo extends JpaRepository<Customer, Long> {
+    List<Customer> findByNameContainingIgnoreCase(String name);
+}
+```
+
+```dart
+// Cod Flutter exemplu (widget de bază)
+class HelloPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Salut!')),
+      body: Center(child: Text('Bun venit la interviu!')),
+    );
+  }
+}
+```
+
+## Întrebări de interviu și răspunsuri model
+
+- **Coding (algoritmic):** „Scrieți o funcție Java care inversează un șir de caractere.” *Model răspuns*: putem folosi `StringBuilder sb = new StringBuilder(input).reverse().toString();` sau un loop manual. Alocați ~15 min. Demonstrați clar pașii și complexitatea O(n).
+  
+- **System Design:** „Proiectați un sistem simplu care limitează suma pariată de un client într-o zi.” *Cheie*: abordați separația de compuneri (frontend, backend, DB), modul de stocare a limitelor, cum se verifică la fiecare cerere, ce se întâmplă dacă e depășit (ex: respingere cu mesaj). Discutați opțiuni de implementare (ex. baza de date SQL + tranzacții) și scalare. Diagrama mermaid:
+
+  ```mermaid
+  graph LR
+      User --> UI[Interfață web/mobile]
+      UI --> API[REST API]
+      API --> SafetyService[Sistem Siguranță]
+      SafetyService --> DB[(MySQL)]
+      SafetyService --> Auth[Serviciu Autentificare]
+  ```
+  *Exemplu răspuns*: UI trimite cereri către API, Backend verifică suma curentă a pariurilor contului în baza de date și stochează/actualizează. Dacă noua tranzacție ar depăși limita, serverul returnează eroare și nu scrie tranzacția. Pentru consistență se folosește o tranzacție DB atomică. (Diagramă schematizează fluxul.)
+
+- **Întrebări comportamentale:** „Descrieți o situație când ați lucrat într-o echipă agilă.” Răspundeți concret: ce rol ați avut, cum ați colab în sprint, un obstacol tehnic sau de comunicare și cum l-ați rezolvat. Altfel, „Spuneți-mi despre un proiect de grup la facultate/liceu.” Structurați răspunsurile STAR (situație, sarcină, acțiune, rezultat). Alocați ~2-3 min pentru fiecare. 
+
+- **Întrebări de testare și calitate:** „Ce testări automate ați implementa pentru un serviciu REST?” Model: menționați unit testing (ex. JUnit pentru logica din service/controller) și integration testing (de ex. cu Testcontainers pentru DB). Răspundeți concis, arătând că știți diferența.
+
+## Check-listă de abilități și cuvinte-cheie
+
+În interviu, menționați proactiv concepte cheie:
+- OOP și **Java**: clase, moștenire, polymorfism, excepții.
+- **Spring Boot**: creare rapidă de API, *starter dependencies*, controller, service, repository.
+- **Spring Data JPA**: `@Entity`, `JpaRepository`, interogări JPQL.
+- **JavaScript / TypeScript**: ES6+, async/await, arrow functions, npm modules, TS tipuri.
+- **React (sau alt framework)**: componente, stări, props, *virtual DOM*.
+- **Flutter (Dart)**: widget-uri, build context, *hot reload*.
+- **REST / JSON**: endpoint-uri, HTTP methods, coduri stare (200, 404, 500).
+- **GraphQL**: query & mutation, schema, noțiunea de reducere a fetch-ului nedorit.
+- **SQL / MySQL**: table, JOIN, SELECT/WHERE/GROUP BY, tranzacții.
+- **ORM (Hibernate/JPA)**: entity mapping, lazy vs eager fetch.
+- **Autentificare (OAuth2/JWT)**: token, refresh, `Authorization: Bearer`.
+- **CI/CD**: pipeline, build, unit test, deploy, automatizare.
+- **Testing**: unit vs integration, JUnit/Mocha, *test coverage*.
+- **Docker**: imagine, container, Dockerfile.
+- **Kafka (mesagerie)**: topic, producător/ consumator (deși poate fi opțional).
+- **Cloud**: concepte AWS (EC2, RDS, S3) și alternative Azure/GCP.
+- **Metodologii**: Agile, scrum, code review, pair programming.
+
+## Concluzie
+
+Acest raport detaliat oferă o privire aprofundată asupra cerințelor și așteptărilor pentru rolul de Internship Software Engineer Full-Stack (Safety) la Flutter Entertainment UKI. Am explicat contextul companiei și al echipei de „siguranță” (responsible gambling), am detaliat tehnologiile relevante și am propus un plan de studiu concentrat și practic. Au fost incluse exemple de cod, diagrame și tabele comparative pentru a ilustra conceptele cheie. Resursele oficiale (documentații Flutter, Spring, GraphQL, GitLab) și tutorialele primare indicate ar trebui prioritizate în pregătire. În cazul în care detaliile exacte din anunț lipsesc (de ex. folosirea reală a Flutter SDK vs. numele companiei), am menționat acest lucru. Sursele citate oferă suport pentru fiecare punct major în discuție, garantând actualitate și acuratețe (până în 2026).
+

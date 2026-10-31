@@ -1,0 +1,7 @@
+1;John Deere;Agricol;4
+2;Massey Ferguson;Agricol;2
+3;Caterpillar;Constructii;6
+4;Fendt;Agricol;4
+5;Volvo;Forestier;6
+6;Komatsu;Constructii;6
+7;Case IH;Agricol;4

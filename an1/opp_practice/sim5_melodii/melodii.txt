@@ -1,0 +1,11 @@
+1;Shape of You;Ed Sheeran;9
+2;Perfect;Ed Sheeran;10
+3;Blinding Lights;The Weeknd;10
+4;Save Your Tears;The Weeknd;8
+5;Levitating;Dua Lipa;9
+6;Don't Start Now;Dua Lipa;7
+7;Rolling in the Deep;Adele;10
+8;Someone Like You;Adele;8
+9;Bad Guy;Billie Eilish;6
+10;Ocean Eyes;Billie Eilish;8
+11;Bohemian Rhapsody;Queen;10

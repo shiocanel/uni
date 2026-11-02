@@ -1,0 +1,21 @@
+1;Popovici;Alexandra;alexandra.popovici@example.com;2005-04-12;Sunt studenta la informatica si imi plac cafeaua si cartile
+2;Risca;Ioan;ioan.risca@example.com;2004-11-03;Sunt pasionat de fotbal si jocuri video
+3;Racoti;Luca;luca.racoti@example.com;2005-07-21;Invat programare si imi place sa fac drumetii in weekend
+4;Potra;Georgiana;georgiana.potra@example.com;2004-02-18;Ascult muzica indie si imi place sa desenez
+6;Rusu;Ricardo;ricardo.rusu@example.com;2005-09-09;Sunt fan baschet si filme SF
+7;Rusti;Maria;maria.rusti@example.com;2005-01-26;Imi plac animalele si fotografia
+8;Ana;Claudia;claudia.ana@example.com;2004-06-14;Fac voluntariat si sunt pasionata de calatorii
+9;Antonio;Marin;antonio.marin@example.com;2003-12-30;Invat programare si sunt mereu curios sa descopar lucruri noi
+10;Alexandra;Ionescu;alexandra.ionescu@example.com;2005-03-07;Imi plac serialele si serile de board games
+11;Mihai;Popescu;mihai.popescu@example.com;2004-08-22;Joc sah si imi place sa rezolv probleme de algoritmica
+12;Elena;Dumitrescu;elena.dumitrescu@example.com;2005-05-16;Sunt pasionata de limbi straine si muzica
+13;Andrei;Munteanu;andrei.munteanu@example.com;2004-10-11;Merg la sala si invat dezvoltare web
+14;Daria;Ceban;daria.ceban@example.com;2005-12-02;Imi plac cafeaua, arta si plimbarile lungi
+15;Victor;Rotaru;victor.rotaru@example.com;2004-04-29;Sunt fan tehnologie si imi place ciclismul
+16;Bianca;Neagu;bianca.neagu@example.com;2005-08-05;Citesc carti fantasy si colectionez plante
+17;Stefan;Radu;stefan.radu@example.com;2003-07-17;Sunt pasionat de masini si jocuri competitive
+18;Irina;Cojocaru;irina.cojocaru@example.com;2005-02-09;Imi place sa gatesc si sa descopar cafenele noi
+19;Denis;Pavel;denis.pavel@example.com;2004-09-25;Ascult rock si imi place sa construiesc proiecte DIY
+20;Sofia;Munteanu;sofia.munteanu@example.com;2005-06-30;Sunt pasionata de dans si filme vechi
+21;Matei;Dobre;matei.dobre@example.com;2004-01-13;Joc tenis si urmaresc Formula 1
+22;Ioana;Lupu;ioana.lupu@example.com;2005-10-20;Iubesc natura si imi place fotografia analogica

@@ -3,8 +3,8 @@ package repository;
 import domain.model.Friendship;
 import domain.model.User;
 import exception.RepositoryException;
-import repository.database.PrietenieDbRepository;
-import repository.database.UtilizatorDbRepository;
+import repository.database.FriendshipDbRepository;
+import repository.database.UserDbRepository;
 import repository.file.FriendshipFileRepository;
 import repository.file.UserFileRepository;
 import repository.memory.InMemoryFriendshipRepository;
@@ -95,7 +95,7 @@ public final class RepositoryFactory {
         creators.put(RepositoryType.FILE,
                 validator -> new UserFileRepository(Paths.get(requireProperty("file.users")), validator));
         creators.put(RepositoryType.DATABASE,
-                validator -> new UtilizatorDbRepository(validator, requireProperty("db.url"),
+                validator -> new UserDbRepository(validator, requireProperty("db.url"),
                         requireProperty("db.user"), requireProperty("db.password")));
         return Collections.unmodifiableMap(creators);
     }
@@ -107,7 +107,7 @@ public final class RepositoryFactory {
         creators.put(RepositoryType.FILE,
                 validator -> new FriendshipFileRepository(Paths.get(requireProperty("file.friendships")), validator));
         creators.put(RepositoryType.DATABASE,
-                validator -> new PrietenieDbRepository(validator, requireProperty("db.url"),
+                validator -> new FriendshipDbRepository(validator, requireProperty("db.url"),
                         requireProperty("db.user"), requireProperty("db.password")));
         return Collections.unmodifiableMap(creators);
     }

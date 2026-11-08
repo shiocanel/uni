@@ -19,3 +19,5 @@
 20;Sofia;Munteanu;sofia.munteanu@example.com;2005-06-30;Sunt pasionata de dans si filme vechi
 21;Matei;Dobre;matei.dobre@example.com;2004-01-13;Joc tenis si urmaresc Formula 1
 22;Ioana;Lupu;ioana.lupu@example.com;2005-10-20;Iubesc natura si imi place fotografia analogica
+23;a;a;;;
+24;b;b;;;

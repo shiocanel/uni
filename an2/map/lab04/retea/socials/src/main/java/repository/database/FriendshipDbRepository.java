@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 /** Database friendship repository skeleton. JDBC implementation belongs to Lab 5. */
-public final class PrietenieDbRepository implements FriendshipRepository {
+public final class FriendshipDbRepository implements FriendshipRepository {
     private final ValidationStrategy<Friendship> validator;
     private final String url;
     private final String user;
@@ -23,7 +23,7 @@ public final class PrietenieDbRepository implements FriendshipRepository {
      * @param user database user
      * @param password database password
      */
-    public PrietenieDbRepository(ValidationStrategy<Friendship> validator, String url, String user, String password) {
+    public FriendshipDbRepository(ValidationStrategy<Friendship> validator, String url, String user, String password) {
         this.validator = validator;
         this.url = url;
         this.user = user;

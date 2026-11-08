@@ -204,7 +204,7 @@ public final class SocialNetworkService {
                 .flatMap(friendship -> Stream.of(friendship.getFirstUserId(), friendship.getSecondUserId()))
                 .distinct()
                 .collect(Collectors.toSet());
-        Function<Set<Long>, Predicate<User>> criterionFactory = CriteriiUtilizator::faraPrieteni;
+        Function<Set<Long>, Predicate<User>> criterionFactory = UserCriteria::withoutFriends;
         return findUsers(criterionFactory.apply(usersWithFriends));
     }
 

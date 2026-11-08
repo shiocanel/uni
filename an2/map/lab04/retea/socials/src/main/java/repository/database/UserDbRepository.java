@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 /** Database repository skeleton. JDBC implementation belongs to Lab 5. */
-public final class UtilizatorDbRepository implements UserRepository {
+public final class UserDbRepository implements UserRepository {
     private final ValidationStrategy<User> validator;
     private final String url;
     private final String user;
@@ -22,7 +22,7 @@ public final class UtilizatorDbRepository implements UserRepository {
      * @param user database user
      * @param password database password
      */
-    public UtilizatorDbRepository(ValidationStrategy<User> validator, String url, String user, String password) {
+    public UserDbRepository(ValidationStrategy<User> validator, String url, String user, String password) {
         this.validator = validator;
         this.url = url;
         this.user = user;

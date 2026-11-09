@@ -1,106 +1,87 @@
-MAP - Retea de socializare - Laboratorul 3
+RETEA DE SOCIALIZARE
 
-CUM PORNESC PROIECTUL IN INTELLIJ IDEA
--------------------------------------
-Proiectul este o aplicatie Java simpla si nu are nevoie de Gradle sau de un script separat.
-Deschide folderul lab03_social_network in IntelliJ IDEA si seteaza un Project SDK instalat pe calculator.
-Clasa de pornire este src/main/java/Main.java. In mod normal, configuratia inclusa marcheaza deja:
-- src/main/java ca Sources Root;
-- src/main/resources ca Resources Root.
+DESCRIERE
 
-Ruleaza metoda main din clasa Main. Working directory trebuie sa fie folderul proiectului, deoarece
-caile din config.properties sunt relative (data/...). Daca IntelliJ nu recunoaste automat configuratia,
-seteaza manual Working directory la radacina proiectului.
-Codul este compatibil cu Java 8 si nu foloseste lambda, method references sau stream-uri.
+Acesta este un proiect Java pentru administrarea unei retele de socializare. Aplicatia ruleaza in consola si permite gestionarea utilizatorilor si a relatiilor de prietenie dintre acestia. Pe baza prieteniilor sunt calculate comunitatile din retea si este identificata cea mai sociabila comunitate.
 
-CONFIGURARE SI PERSISTENTA
---------------------------
-Configuratia se afla in src/main/resources/config.properties. Pentru modul normal de lucru:
-    repository.type=FILE
+FUNCTIONALITATI
 
-Datele sunt fisiere text UTF-8, fara antet, cu un obiect pe linie si campurile separate prin punct si virgula:
-- data/utilizatori.txt: id;prenume;nume
-- data/prietenii.txt: idUtilizator1;idUtilizator2;dataPrieteniei
+1. Afisarea tuturor utilizatorilor.
+2. Adaugarea unui utilizator cu prenume, nume, email, data nasterii si descriere. Datele de profil suplimentare sunt optionale.
+3. Stergerea unui utilizator impreuna cu toate prieteniile asociate acestuia.
+4. Adaugarea unei prietenii intre doi utilizatori existenti.
+5. Stergerea unei prietenii.
+6. Afisarea tuturor prieteniilor.
+7. Calcularea numarului de comunitati.
+8. Afisarea tuturor comunitatilor.
+9. Afisarea celei mai sociabile comunitati.
 
-Data prieteniei foloseste formatul ISO, de exemplu 2026-10-19T10:30. Am pastrat valorile din exemplul initial si am mai adaugat cativa utilizatori pentru a se putea testa mai usor reteaua.
-ID-urile sunt afisate in liste,
-dar cand se adauga sau se sterge o prietenie se introduc numele persoanelor, nu ID-urile.
+Utilizatorii pot fi cautati dupa prenume, nume sau numele complet. Cautarea nu tine cont de litere mari si mici. Daca numele introdus corespunde mai multor utilizatori, aplicatia solicita folosirea unui nume mai precis.
 
-Daca un fisier nu exista, repository-ul porneste gol. Fisierul se creeaza la prima salvare reusita.
-La incarcarea datelor, fiecare linie este parsata si trece prin validator. O linie invalida este raportata
-pe stderr cu fisierul, numarul liniei si motivul, apoi este ignorata. Am ales varianta aceasta pentru ca o
-singura linie stricata sa nu opreasca toata aplicatia, iar celelalte date valide sa poata fi folosite.
-La urmatoarea salvare reusita, fisierul este rescris cu entitatile valide care au fost incarcate.
+ORGANIZAREA PROIECTULUI
 
-Pentru a testa liniile corupte, opreste aplicatia si modifica temporar in config.properties proprietatile:
-    file.users=test-data/utilizatori-corupt.txt
-    file.friendships=test-data/prietenii-corupte.txt
-Pastreaza repository.type=FILE si reporneste aplicatia. Dupa test, pune inapoi caile din folderul data/.
-Fisierele din test-data/ sunt separate ca sa nu fie nevoie sa strici datele folosite normal.
+Proiectul este impartit in mai multe pachete, fiecare avand un rol separat.
 
-FACTORY SI TIPURI DE REPOSITORY
--------------------------------
-RepositoryFactory este singurul loc care decide ce clase concrete sunt folosite. Ambele repository-uri
-sunt create pentru acelasi tip de persistenta, citit din config.properties:
-- MEMORY: datele sunt tinute doar in memorie si se pierd la inchidere;
-- FILE: datele sunt citite si scrise in fisierele text;
-- DATABASE: factory-ul creeaza clasele UtilizatorDbRepository si PrietenieDbRepository.
+1. domain.model contine clasele User, Friendship, FriendshipId, Community si Entity. Aceste clase reprezinta datele folosite in aplicatie.
+2. validation contine regulile de validare pentru utilizatori si prietenii.
+3. repository contine interfetele si implementarea generica pentru accesul la date.
+4. repository.memory contine repository-urile care pastreaza datele in memorie.
+5. repository.file contine repository-urile care citesc si scriu date in fisiere.
+6. repository.database contine clasele pregatite pentru varianta cu baza de date. Implementarea JDBC urmeaza sa fie facuta intr-un laborator ulterior.
+7. service contine logica aplicatiei, operatiile pentru utilizatori si prietenii, precum si calculul comunitatilor.
+8. ui contine meniul si interactiunea cu utilizatorul prin consola.
+9. exception contine exceptiile folosite pentru erorile aplicatiei.
 
-Repository-urile DATABASE sunt doar schelete pentru laboratorul 4. Metodele lor arunca
-UnsupportedOperationException, pentru ca implementarea JDBC nu face parte din laboratorul 3. Pentru a
-verifica selectarea tipului, schimba repository.type in DATABASE si reporneste aplicatia; operatiile de
-stocare nu vor functiona pana la implementarea de la laboratorul urmator.
+Main este punctul de pornire al aplicatiei. Aici sunt incarcate configurarile, create repository-urile si pornita interfata din consola.
 
-Pentru trecerea la baza de date se implementeaza metodele repository-urilor DB si se actualizeaza
-parametrii db.url, db.user si db.password. Service-ul, UI-ul si Main folosesc interfetele repository si nu
-au nevoie sa stie ce implementare concreta este selectata.
+STOCAREA DATELOR
 
-STRUCTURA PROIECTULUI
----------------------
-domain.model       - clasele User, Friendship, FriendshipId, Community si Entity.
-repository         - interfetele Repository, UserRepository, FriendshipRepository, repository-ul generic
-                     InMemoryRepository, enum-ul RepositoryType si RepositoryFactory.
-repository.memory  - implementari pentru modul MEMORY.
-repository.file    - AbstractFileRepository si conversiile pentru fisierele text.
-repository.database- clase schelet pentru laboratorul 4; nu contin cod JDBC.
-service            - SocialNetworkService contine operatiile aplicatiei si analiza comunitatilor.
-ui                 - ConsoleUI afiseaza meniul si citeste datele introduse.
-validation         - validatoarele pentru utilizatori si prietenii.
-exception          - exceptii proprii pentru validare, lipsa entitatii si persistenta.
+Tipul de stocare este ales din fisierul config.properties prin proprietatea repository.type. Sunt prevazute trei variante:
 
-Am pastrat un singur service: SocialNetworkService. Analiza comunitatilor (BFS si calculul diametrului)
-este in aceeasi clasa, astfel incat nu mai exista un al doilea service separat.
+1. MEMORY pastreaza datele doar in memorie. Datele se pierd la inchiderea aplicatiei.
+2. FILE citeste si salveaza datele in fisiere text. Pentru aceasta varianta sunt folosite proprietatile file.users si file.friendships.
+3. DATABASE este pregatita ca structura, dar operatiile JDBC nu sunt implementate in acest laborator. Clasele repository.database arunca UnsupportedOperationException, deoarece partea de baza de date este rezervata laboratorului urmator. Pentru configurare sunt prevazute proprietatile db.url, db.user si db.password.
 
-INTERFATA CU UTILIZATORUL
--------------------------
-- Lista utilizatorilor arata numarul din lista, numele complet si ID-ul.
-- Lista prieteniilor arata ambele persoane, ID-urile si data prieteniei.
-- Pentru adaugarea si stergerea unei prietenii se pot introduce prenumele (de exemplu Antonio si Alexandra)
-  sau numele complet. Nu se cer ID-uri.
-- Daca acelasi prenume apare la mai multi utilizatori, aplicatia cere numele complet, ca sa nu aleaga gresit.
-- Stergerea unui utilizator se face dupa nume si elimina si prieteniile asociate.
+FORMATUL FISIERELOR
 
-PRINCIPII SOLID SI SABLOANE
----------------------------
-SRP: ConsoleUI se ocupa de interactiunea cu utilizatorul, SocialNetworkService de operatiile aplicatiei,
-repository-urile de persistenta, iar validatorii de regulile datelor.
-DIP: service-ul si UI-ul depind de interfetele repository, nu de clasele concrete pentru FILE/MEMORY/DATABASE.
-OCP: se pot adauga implementari noi de repository fara schimbari in UI si service. Simple Factory cu switch
-este usor de urmarit, dar trebuie modificata cand se adauga un tip nou. O varianta Abstract Factory ar avea
-cate o fabrica pentru fiecare familie de repository-uri si ar evita modificarea switch-ului central, dar ar
-adauga clase si cod suplimentar.
-LSP: implementarea in memorie si cea in fisier respecta contractul interfetelor repository pentru operatiile
-implementate. Repository-urile DB sunt intentionat incomplete in laboratorul 3.
+Fisierul utilizatorilor accepta linii cu 3 campuri sau cu 6 campuri, separate prin punct si virgula. Formatul cu 3 campuri este id, prenume si nume. Formatul cu 6 campuri este id, prenume, nume, email, data nasterii si descriere. La salvare, utilizatorii sunt scrisi cu toate cele 6 campuri.
 
-Factory: RepositoryFactory selecteaza implementarile dupa repository.type.
-Template Method: AbstractFileRepository contine logica comuna de citire, validare si scriere; clasele concrete
-implementeaza extractEntity si createEntityAsString.
-Strategy: ValidationStrategy este interfata pentru validarea utilizatorilor si a prieteniilor.
-Decorator: BufferedReader si BufferedWriter sunt folosite peste fluxurile de caractere create cu NIO.2.
+Fisierul prieteniilor foloseste 3 campuri: primul ID de utilizator, al doilea ID de utilizator si data prieteniei. Data este salvata in formatul an-luna-zi, urmata de ora si minut.
 
-VALIDARE SI CONSISTENTA
------------------------
-Datele citite din fisiere trec prin aceiasi validatori ca datele noi. Prieteniile sunt permise doar intre doi
-utilizatori existenti; nu sunt permise prietenii cu sine sau duplicate. FriendshipId normalizeaza perechea,
-astfel incat (1, 2) si (2, 1) desemneaza aceeasi prietenie. La stergerea unui utilizator se sterg si prieteniile
-lui, ca fisierele sa nu ramana cu referinte catre utilizatori inexistenti.
+Daca un fisier nu exista, repository-ul il trateaza ca fiind gol. Liniile invalide sunt ignorate si sunt raportate in consola impreuna cu numarul liniei si motivul erorii.
+
+VALIDARI
+
+Pentru utilizatori se verifica ID-ul pozitiv, prenumele si numele obligatorii, lungimea numelor, adresa de email, formatul datei de nastere si continutul descrierii. Data nasterii este verificata si printr-o regula suplimentara adaugata cu lambda in Main. Aceasta regula verifica daca data este reala si nu este in viitor.
+
+Pentru prietenii se verifica daca cei doi utilizatori exista si daca nu se incearca adaugarea unei prietenii intre un utilizator si el insusi. Aplicatia nu permite adaugarea aceleiasi prietenii de doua ori.
+
+CERINTE JAVA FOLOSITE
+
+Proiectul foloseste functionalitati din Java 8.
+
+1. ValidationStrategy este o interfata functionala si are metoda default andThen pentru combinarea validatorilor.
+2. Repository are metoda findAll cu Predicate, care permite filtrarea entitatilor.
+3. UserCriteria contine criterii de cautare pentru utilizatori. Criteriile pot fi combinate cu and, or si negate.
+4. RepositoryFactory foloseste doua map-uri cu Function pentru crearea repository-urilor de utilizatori si de prietenii, fara switch pentru alegerea tipului de stocare.
+5. AbstractFileRepository pastreaza logica comuna de citire si scriere. Clasele UserFileRepository si FriendshipFileRepository implementeaza conversia dintre linii si obiecte. Este folosit sablonul Template Method.
+6. Operatiile pe colectii folosesc Stream API, de exemplu filter, map, flatMap, distinct, sorted, count, max, anyMatch, allMatch, noneMatch si collect.
+7. Pentru construirea colectiilor sunt folositi colectori precum toList, toSet, groupingBy, counting si joining.
+8. Pentru sortare sunt folositi Comparator.comparing si thenComparing.
+9. In proiect sunt folosite lambda-uri si referinte la metode, inclusiv referinte la metode statice, metode ale unor instante, metode ale unor instante de tip arbitrar si constructori.
+10. Optional este folosit pentru rezultatele care pot lipsi, de exemplu la cautarea dupa ID si la gasirea celei mai sociabile comunitati.
+11. Pentru fisiere sunt folosite Files.lines si Files.write. Citirea foloseste try-with-resources pentru inchiderea stream-ului.
+
+CALCULAREA COMUNITATILOR
+
+Reteaua este tratata ca un graf neorientat. Fiecare utilizator reprezinta un nod, iar fiecare prietenie reprezinta o muchie. Metoda getCommunities foloseste structura Union-Find pentru gruparea utilizatorilor in componente conexe. Sunt incluse si comunitatile formate dintr-un singur utilizator, chiar daca acesta nu are prieteni.
+
+Diametrul unei comunitati este cea mai mare distanta minima dintre doi membri ai acesteia. Pentru calcularea distantelor este folosita parcurgerea BFS. Cea mai sociabila comunitate este aleasa in functie de diametru, apoi de numarul de membri. In caz de egalitate se pastreaza comunitatea cu cel mai mic ID minim.
+
+RULAREA APLICATIEI
+
+Proiectul poate fi deschis in IntelliJ IDEA ca proiect Java. Este necesar un JDK compatibil cu Java 8. Fisierul config.properties trebuie sa fie in src/main/resources si sa contina cel putin proprietatea repository.type, impreuna cu proprietatile necesare tipului de stocare ales.
+
+Pentru pornire se ruleaza clasa Main. Dupa pornire apare meniul din consola, iar operatiile se aleg prin introducerea numarului corespunzator.
+
+Proiectul foloseste doar biblioteca standard Java si nu necesita biblioteci externe.

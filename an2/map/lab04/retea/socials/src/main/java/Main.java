@@ -20,6 +20,14 @@ public final class Main {
     private Main() {
     }
 
+    /*
+        1. ValidationStrategy
+        2. Predicate, lambda, used -> Repository, UserCriteria, SocialNetworkService
+        3. Function -> RepositoryFactory
+        4.
+
+     */
+
     /**
      * Loads configuration, creates repositories and starts the console interface.
      * A second validation rule is composed as a lambda with the existing validator.

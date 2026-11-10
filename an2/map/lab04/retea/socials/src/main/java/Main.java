@@ -43,7 +43,8 @@ public final class Main {
                         if (birthDate.isAfter(LocalDate.now())) {
                             throw new ValidationException("Data nasterii nu poate fi in viitor.");
                         }
-                    } catch (DateTimeParseException exception) {
+                    }
+                    catch (DateTimeParseException exception) {
                         throw new ValidationException("Data nasterii nu reprezinta o data calendaristica valida.");
                     }
                 }
@@ -58,7 +59,8 @@ public final class Main {
                     userRepository, friendshipRepository, userValidator, friendshipValidator);
             System.out.println("Mod de stocare activ: " + factory.getRepositoryType());
             new ConsoleUI(service, new Scanner(System.in)).run();
-        } catch (RepositoryException exception) {
+        }
+        catch (RepositoryException exception) {
             System.err.println("Aplicatia nu poate porni: " + exception.getMessage());
         }
     }

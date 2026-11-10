@@ -1,6 +1,5 @@
 1;Popovici;Alexandra;alexandra.popovici@example.com;2005-04-12;Sunt studenta la informatica si imi plac cafeaua si cartile
 2;Risca;Ioan;ioan.risca@example.com;2004-11-03;Sunt pasionat de fotbal si jocuri video
-3;Racoti;Luca;luca.racoti@example.com;2005-07-21;Invat programare si imi place sa fac drumetii in weekend
 4;Potra;Georgiana;georgiana.potra@example.com;2004-02-18;Ascult muzica indie si imi place sa desenez
 6;Rusu;Ricardo;ricardo.rusu@example.com;2005-09-09;Sunt fan baschet si filme SF
 7;Rusti;Maria;maria.rusti@example.com;2005-01-26;Imi plac animalele si fotografia

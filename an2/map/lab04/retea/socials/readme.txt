@@ -1,87 +1,87 @@
-RETEA DE SOCIALIZARE
+# SOCIAL NETWORK
 
-DESCRIERE
+## DESCRIPTION
 
-Acesta este un proiect Java pentru administrarea unei retele de socializare. Aplicatia ruleaza in consola si permite gestionarea utilizatorilor si a relatiilor de prietenie dintre acestia. Pe baza prieteniilor sunt calculate comunitatile din retea si este identificata cea mai sociabila comunitate.
+This is a Java project for managing a social network. The application runs in the console and allows users and friendships between them to be managed. Based on these friendships, the application calculates the communities in the network and identifies the most sociable community.
 
-FUNCTIONALITATI
+## FEATURES
 
-1. Afisarea tuturor utilizatorilor.
-2. Adaugarea unui utilizator cu prenume, nume, email, data nasterii si descriere. Datele de profil suplimentare sunt optionale.
-3. Stergerea unui utilizator impreuna cu toate prieteniile asociate acestuia.
-4. Adaugarea unei prietenii intre doi utilizatori existenti.
-5. Stergerea unei prietenii.
-6. Afisarea tuturor prieteniilor.
-7. Calcularea numarului de comunitati.
-8. Afisarea tuturor comunitatilor.
-9. Afisarea celei mai sociabile comunitati.
+1. Display all users.
+2. Add a user with a first name, last name, email address, birth date and description. Additional profile information is optional.
+3. Delete a user together with all their associated friendships.
+4. Add a friendship between two existing users.
+5. Delete a friendship.
+6. Display all friendships.
+7. Calculate the number of communities.
+8. Display all communities.
+9. Display the most sociable community.
 
-Utilizatorii pot fi cautati dupa prenume, nume sau numele complet. Cautarea nu tine cont de litere mari si mici. Daca numele introdus corespunde mai multor utilizatori, aplicatia solicita folosirea unui nume mai precis.
+Users can be searched by first name, last name or full name. The search is case-insensitive. If the entered name matches multiple users, the application asks for a more specific name.
 
-ORGANIZAREA PROIECTULUI
+## PROJECT STRUCTURE
 
-Proiectul este impartit in mai multe pachete, fiecare avand un rol separat.
+The project is divided into several packages, each having a separate role.
 
-1. domain.model contine clasele User, Friendship, FriendshipId, Community si Entity. Aceste clase reprezinta datele folosite in aplicatie.
-2. validation contine regulile de validare pentru utilizatori si prietenii.
-3. repository contine interfetele si implementarea generica pentru accesul la date.
-4. repository.memory contine repository-urile care pastreaza datele in memorie.
-5. repository.file contine repository-urile care citesc si scriu date in fisiere.
-6. repository.database contine clasele pregatite pentru varianta cu baza de date. Implementarea JDBC urmeaza sa fie facuta intr-un laborator ulterior.
-7. service contine logica aplicatiei, operatiile pentru utilizatori si prietenii, precum si calculul comunitatilor.
-8. ui contine meniul si interactiunea cu utilizatorul prin consola.
-9. exception contine exceptiile folosite pentru erorile aplicatiei.
+1. `domain.model` contains the classes `User`, `Friendship`, `FriendshipId`, `Community` and `Entity`. These classes represent the data used by the application.
+2. `validation` contains the validation rules for users and friendships.
+3. `repository` contains the interfaces and the generic implementation for accessing data.
+4. `repository.memory` contains the repositories that store data in memory.
+5. `repository.file` contains the repositories that read and write data to files.
+6. `repository.database` contains the classes prepared for the database version. The JDBC implementation will be added in a later lab.
+7. `service` contains the application logic, operations for users and friendships, and community calculations.
+8. `ui` contains the menu and console interaction with the user.
+9. `exception` contains the exceptions used for application errors.
 
-Main este punctul de pornire al aplicatiei. Aici sunt incarcate configurarile, create repository-urile si pornita interfata din consola.
+`Main` is the entry point of the application. It loads the configuration, creates the repositories and starts the console interface.
 
-STOCAREA DATELOR
+## DATA STORAGE
 
-Tipul de stocare este ales din fisierul config.properties prin proprietatea repository.type. Sunt prevazute trei variante:
+The storage type is selected in the `config.properties` file using the `repository.type` property. Three options are available:
 
-1. MEMORY pastreaza datele doar in memorie. Datele se pierd la inchiderea aplicatiei.
-2. FILE citeste si salveaza datele in fisiere text. Pentru aceasta varianta sunt folosite proprietatile file.users si file.friendships.
-3. DATABASE este pregatita ca structura, dar operatiile JDBC nu sunt implementate in acest laborator. Clasele repository.database arunca UnsupportedOperationException, deoarece partea de baza de date este rezervata laboratorului urmator. Pentru configurare sunt prevazute proprietatile db.url, db.user si db.password.
+1. `MEMORY` stores data only in memory. The data is lost when the application is closed.
+2. `FILE` reads and saves data in text files. The `file.users` and `file.friendships` properties are used for this option.
+3. `DATABASE` is prepared as a structure, but the JDBC operations are not implemented in this lab. The classes in `repository.database` throw `UnsupportedOperationException` because the database implementation is reserved for the next lab. The `db.url`, `db.user` and `db.password` properties are provided for configuration.
 
-FORMATUL FISIERELOR
+## FILE FORMATS
 
-Fisierul utilizatorilor accepta linii cu 3 campuri sau cu 6 campuri, separate prin punct si virgula. Formatul cu 3 campuri este id, prenume si nume. Formatul cu 6 campuri este id, prenume, nume, email, data nasterii si descriere. La salvare, utilizatorii sunt scrisi cu toate cele 6 campuri.
+The users file accepts lines with either 3 or 6 fields, separated by semicolons. The 3-field format contains the ID, first name and last name. The 6-field format contains the ID, first name, last name, email, birth date and description. When saving, users are written using all 6 fields.
 
-Fisierul prieteniilor foloseste 3 campuri: primul ID de utilizator, al doilea ID de utilizator si data prieteniei. Data este salvata in formatul an-luna-zi, urmata de ora si minut.
+The friendships file uses 3 fields: the first user ID, the second user ID and the friendship date. The date is saved in year-month-day format, followed by the hour and minute.
 
-Daca un fisier nu exista, repository-ul il trateaza ca fiind gol. Liniile invalide sunt ignorate si sunt raportate in consola impreuna cu numarul liniei si motivul erorii.
+If a file does not exist, the repository treats it as empty. Invalid lines are ignored and reported in the console together with the line number and the reason for the error.
 
-VALIDARI
+## VALIDATION
 
-Pentru utilizatori se verifica ID-ul pozitiv, prenumele si numele obligatorii, lungimea numelor, adresa de email, formatul datei de nastere si continutul descrierii. Data nasterii este verificata si printr-o regula suplimentara adaugata cu lambda in Main. Aceasta regula verifica daca data este reala si nu este in viitor.
+For users, the application checks that the ID is positive, the first and last names are not empty, the names have valid lengths, the email address is valid, the birth date has the correct format and the description contains valid content. The birth date is also checked using an additional rule added with a lambda in `Main`. This rule checks whether the date is valid and is not in the future.
 
-Pentru prietenii se verifica daca cei doi utilizatori exista si daca nu se incearca adaugarea unei prietenii intre un utilizator si el insusi. Aplicatia nu permite adaugarea aceleiasi prietenii de doua ori.
+For friendships, the application checks whether both users exist and prevents a friendship from being created between a user and themselves. The application also prevents the same friendship from being added more than once.
 
-CERINTE JAVA FOLOSITE
+## JAVA 8 FEATURES
 
-Proiectul foloseste functionalitati din Java 8.
+The project uses features introduced in Java 8.
 
-1. ValidationStrategy este o interfata functionala si are metoda default andThen pentru combinarea validatorilor.
-2. Repository are metoda findAll cu Predicate, care permite filtrarea entitatilor.
-3. UserCriteria contine criterii de cautare pentru utilizatori. Criteriile pot fi combinate cu and, or si negate.
-4. RepositoryFactory foloseste doua map-uri cu Function pentru crearea repository-urilor de utilizatori si de prietenii, fara switch pentru alegerea tipului de stocare.
-5. AbstractFileRepository pastreaza logica comuna de citire si scriere. Clasele UserFileRepository si FriendshipFileRepository implementeaza conversia dintre linii si obiecte. Este folosit sablonul Template Method.
-6. Operatiile pe colectii folosesc Stream API, de exemplu filter, map, flatMap, distinct, sorted, count, max, anyMatch, allMatch, noneMatch si collect.
-7. Pentru construirea colectiilor sunt folositi colectori precum toList, toSet, groupingBy, counting si joining.
-8. Pentru sortare sunt folositi Comparator.comparing si thenComparing.
-9. In proiect sunt folosite lambda-uri si referinte la metode, inclusiv referinte la metode statice, metode ale unor instante, metode ale unor instante de tip arbitrar si constructori.
-10. Optional este folosit pentru rezultatele care pot lipsi, de exemplu la cautarea dupa ID si la gasirea celei mai sociabile comunitati.
-11. Pentru fisiere sunt folosite Files.lines si Files.write. Citirea foloseste try-with-resources pentru inchiderea stream-ului.
+1. `ValidationStrategy` is a functional interface and has a default `andThen` method for combining validators.
+2. `Repository` has a `findAll` method that accepts a `Predicate`, allowing entities to be filtered.
+3. `UserCriteria` contains search criteria for users. These criteria can be combined using `and`, `or` and `negate`.
+4. `RepositoryFactory` uses two maps with `Function` for creating user and friendship repositories, without using a switch to select the storage type.
+5. `AbstractFileRepository` keeps the common reading and writing logic. `UserFileRepository` and `FriendshipFileRepository` implement the conversion between file lines and objects. The Template Method design pattern is used.
+6. Collection operations use the Stream API, including `filter`, `map`, `flatMap`, `distinct`, `sorted`, `count`, `max`, `anyMatch`, `allMatch`, `noneMatch` and `collect`.
+7. Collectors such as `toList`, `toSet`, `groupingBy`, `counting` and `joining` are used to build collections.
+8. `Comparator.comparing` and `thenComparing` are used for sorting.
+9. The project uses lambda expressions and method references, including references to static methods, methods of specific objects, methods of arbitrary objects of a particular type and constructors.
+10. `Optional` is used for results that may be missing, for example when searching by ID or finding the most sociable community.
+11. `Files.lines` and `Files.write` are used for file operations. Reading uses try-with-resources to close the stream automatically.
 
-CALCULAREA COMUNITATILOR
+## COMMUNITY CALCULATION
 
-Reteaua este tratata ca un graf neorientat. Fiecare utilizator reprezinta un nod, iar fiecare prietenie reprezinta o muchie. Metoda getCommunities foloseste structura Union-Find pentru gruparea utilizatorilor in componente conexe. Sunt incluse si comunitatile formate dintr-un singur utilizator, chiar daca acesta nu are prieteni.
+The network is treated as an undirected graph. Each user represents a node, and each friendship represents an edge. The `getCommunities` method uses the Union-Find data structure to group users into connected components. Communities containing only one user are also included, even if that user has no friends.
 
-Diametrul unei comunitati este cea mai mare distanta minima dintre doi membri ai acesteia. Pentru calcularea distantelor este folosita parcurgerea BFS. Cea mai sociabila comunitate este aleasa in functie de diametru, apoi de numarul de membri. In caz de egalitate se pastreaza comunitatea cu cel mai mic ID minim.
+The diameter of a community is the largest shortest-path distance between any two of its members. BFS traversal is used to calculate these distances. The most sociable community is selected based on its diameter and then the number of members. If there is still a tie, the community with the smallest minimum ID is selected.
 
-RULAREA APLICATIEI
+## RUNNING THE APPLICATION
 
-Proiectul poate fi deschis in IntelliJ IDEA ca proiect Java. Este necesar un JDK compatibil cu Java 8. Fisierul config.properties trebuie sa fie in src/main/resources si sa contina cel putin proprietatea repository.type, impreuna cu proprietatile necesare tipului de stocare ales.
+The project can be opened in IntelliJ IDEA as a Java project. A JDK compatible with Java 8 is required. The `config.properties` file must be located in `src/main/resources` and must contain at least the `repository.type` property, together with the properties required by the selected storage type.
 
-Pentru pornire se ruleaza clasa Main. Dupa pornire apare meniul din consola, iar operatiile se aleg prin introducerea numarului corespunzator.
+To start the application, run the `Main` class. The console menu will appear, and operations can be selected by entering the corresponding number.
 
-Proiectul foloseste doar biblioteca standard Java si nu necesita biblioteci externe.
+The project uses only the standard Java library and does not require external libraries.

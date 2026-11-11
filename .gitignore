@@ -187,3 +187,5 @@ javadoc/
 *.zip
 java doc/
 javadoc/
+
+*.properties

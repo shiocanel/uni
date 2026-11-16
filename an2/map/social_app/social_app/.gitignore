@@ -1,0 +1,12 @@
+.gradle/
+build/
+out/
+.idea/
+*.iml
+
+# Local credentials must not be committed.
+src/main/resources/config.properties
+
+# IDE and operating system files.
+.DS_Store
+Thumbs.db

@@ -189,3 +189,13 @@ java doc/
 javadoc/
 
 *.properties
+.gradle/
+build/
+out/
+.idea/
+*.iml
+
+src/main/resources/config.properties
+
+.DS_Store
+Thumbs.db

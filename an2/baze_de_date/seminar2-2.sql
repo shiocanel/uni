@@ -48,3 +48,5 @@ SELECT * FROM Utilizatori;
 SELECT * FROM CuvinteCheie;
 SELECT * FROM Articole;
 SELECT * FROM Comentarii
+
+

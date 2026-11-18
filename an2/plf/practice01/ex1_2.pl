@@ -7,10 +7,21 @@
 % [1, [2, 3], 4, 5, [6, 7, 9], 10, 11, [1, 2, 0], 6] =>
 % [8, 2, 2].
 
+% suma_aux(A, B, T) = 1. [1], daca t = 1
+%                       2. [], daca t = 0
+%                       3. s mod 10 + suma_aux(a2...an, [], Tnou), daca B = [] si unde s = a1 + T, Tnou = s // 10
+%                       4. s mod 10 + suma_aux([], b2...bn, Tnou), daca A = [] si unde s = b1 + T, Tnou = s // 10
+%                       5. s mod 10 + suma_aux(a2...an, b2...bn, Tnou), altfel si unde s = a1 + b1 + T, Tnou = s // 10
+
+% suma_lista(L1, L2) = inv(suma_aux(inv(L1), inv(L2), 0))
 
 % suma_lista(L1: list of digit, L2: list of digits, Rez: list of digits) -> (i, i, o) determinist
 % suma_aux(L1: list, L2: list, Transport: integer, Rez: list) -> (i, i, i, o) determinist
 
+
+% suma_eterogen(L) = 1. [0], daca L = []
+%                    2. suma_lista(l1, suma_eterogen(l2...ln)), daca is_list(l1)
+%                    3. suma_eterogen(l2...ln), altfel
 
 inverseaza_aux([], Acc, Acc).
 inverseaza_aux([H | T], Acc, Rez) :-
@@ -47,6 +58,7 @@ suma_lista(L1, L2, Rez) :-
     inverseaza(InvRez, Rez).
 
 
+% suma_eterogen(L: List, Rez: List) -> (i, o) determinist
 suma_eterogen([], [0]).
 suma_eterogen([H | T], Rez) :-
     is_list(H),

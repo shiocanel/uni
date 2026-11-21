@@ -1,0 +1,477 @@
+CREATE DATABASE BankManagement;
+GO
+
+USE BankManagement;
+GO
+
+CREATE TABLE Branches(
+    BranchID INT PRIMARY KEY IDENTITY(1, 1),
+    BranchName NVARCHAR(100) NOT NULL,
+    BranchCode VARCHAR(10) UNIQUE NOT NULL,
+    BranchAddress NVARCHAR(255) NOT NULL,
+    City NVARCHAR(100) NOT NULL,
+    PhoneNumber VARCHAR(20)
+);
+
+CREATE TABLE AccountTypes(
+    AccountTypeID INT PRIMARY KEY IDENTITY(1, 1),
+    TypeName VARCHAR(50) UNIQUE NOT NULL,
+    InterestRate DECIMAL(5, 4) DEFAULT 0.00 CHECK (InterestRate >= 0),
+    MonthlyFee DECIMAL(10, 2) DEFAULT 0.00
+);
+
+CREATE TABLE Customers(
+    CustomerID INT PRIMARY KEY IDENTITY(1, 1),
+    FirstName NVARCHAR(100) NOT NULL,
+    LastName NVARCHAR(100) NOT NULL,
+    PersonalNumericCode VARCHAR(20) UNIQUE NOT NULL,
+    DateOfBirth DATE NOT NULL CHECK (DateOfBirth <= GETDATE()),
+    Email VARCHAR(100) UNIQUE,
+    PhoneNumber VARCHAR(20) NOT NULL,
+    CustomerAddress NVARCHAR(255)
+);
+
+CREATE TABLE Employees(
+    EmployeeID INT IDENTITY(1,1) PRIMARY KEY,
+    BranchID INT NOT NULL,
+    FirstName NVARCHAR(100) NOT NULL,
+    LastName NVARCHAR(100) NOT NULL,
+    JobTitle VARCHAR(50) NOT NULL,
+    HireDate DATE DEFAULT GETDATE(),
+    Salary DECIMAL(10,2) NOT NULL CHECK (Salary > 0),
+    CONSTRAINT FK_Employees_Branches FOREIGN KEY (BranchID) REFERENCES Branches(BranchID)
+);
+
+CREATE TABLE Accounts (
+    AccountID INT IDENTITY(1,1) PRIMARY KEY,
+    BranchID INT NOT NULL,
+    AccountTypeID INT NOT NULL,
+    AccountNumber VARCHAR(30) UNIQUE NOT NULL,
+    Balance DECIMAL(18,2) DEFAULT 0.00,
+    Currency VARCHAR(3) DEFAULT 'USD',
+    AccountStatus VARCHAR(20) DEFAULT 'Active' CHECK (AccountStatus IN ('Active', 'Suspended', 'Closed')),
+    OpenedDate DATETIME DEFAULT GETDATE(),
+    CONSTRAINT FK_Accounts_Branches FOREIGN KEY (BranchID) REFERENCES Branches(BranchID),
+    CONSTRAINT FK_Accounts_AccountTypes FOREIGN KEY (AccountTypeID) REFERENCES AccountTypes(AccountTypeID)
+);
+
+CREATE TABLE CustomerAccounts(
+    CustomerID INT NOT NULL,
+    AccountID INT NOT NULL,
+    AccountRole VARCHAR(30) DEFAULT 'Primary' CHECK (AccountRole IN ('Primary', 'Secondary', 'Guarantor')),
+    LinkDate DATETIME DEFAULT GETDATE(),
+    PRIMARY KEY (CustomerID, AccountID),
+    CONSTRAINT FK_CustomerAccounts_Customers FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    CONSTRAINT FK_CustomerAccounts_Accounts FOREIGN KEY (AccountID) REFERENCES Accounts(AccountID)
+);
+
+CREATE TABLE Transactions (
+    TransactionID INT IDENTITY(1,1) PRIMARY KEY,
+    AccountID INT NOT NULL,
+    TransactionType VARCHAR(20) NOT NULL CHECK (TransactionType IN ('Deposit', 'Withdrawal', 'Transfer', 'Fee')),
+    Amount DECIMAL(18,2) NOT NULL CHECK (Amount > 0),
+    TransactionDate DATETIME DEFAULT GETDATE(),
+    Description NVARCHAR(255),
+    CONSTRAINT FK_Transactions_Accounts FOREIGN KEY (AccountID) REFERENCES Accounts(AccountID)
+);
+
+CREATE TABLE Cards (
+    CardID INT IDENTITY(1,1) PRIMARY KEY,
+    AccountID INT NOT NULL,
+    CardNumber VARCHAR(16) UNIQUE NOT NULL,
+    CardType VARCHAR(20) NOT NULL CHECK (CardType IN ('Debit', 'Credit')),
+    ExpiryDate DATE NOT NULL,
+    CVV VARCHAR(4) NOT NULL,
+    IsActive BIT DEFAULT 1,
+    CONSTRAINT FK_Cards_Accounts FOREIGN KEY (AccountID) REFERENCES Accounts(AccountID)
+);
+
+CREATE TABLE Loans (
+    LoanID INT IDENTITY(1,1) PRIMARY KEY,
+    CustomerID INT NOT NULL,
+    BranchID INT NOT NULL,
+    LoanAmount DECIMAL(18,2) NOT NULL CHECK (LoanAmount > 0),
+    InterestRate DECIMAL(5,4) NOT NULL,
+    TermInMonths INT NOT NULL CHECK (TermInMonths > 0),
+    StartDate DATE DEFAULT GETDATE(),
+    LoanStatus VARCHAR(20) DEFAULT 'Pending' CHECK (LoanStatus IN ('Pending', 'Approved', 'PaidOff', 'Defaulted')),
+    CONSTRAINT FK_Loans_Customers FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID),
+    CONSTRAINT FK_Loans_Branches FOREIGN KEY (BranchID) REFERENCES Branches(BranchID)
+);
+
+CREATE TABLE LoanPayments (
+    PaymentID INT IDENTITY(1,1) PRIMARY KEY,
+    LoanID INT NOT NULL,
+    PaymentAmount DECIMAL(18,2) NOT NULL CHECK (PaymentAmount > 0),
+    PaymentDate DATETIME DEFAULT GETDATE(),
+    PrincipalAmount DECIMAL(18,2) NOT NULL,
+    InterestAmount DECIMAL(18,2) NOT NULL,
+    CONSTRAINT FK_LoanPayments_Loans FOREIGN KEY (LoanID) REFERENCES Loans(LoanID)
+);USE BankManagement;
+
+INSERT INTO Branches (BranchName, BranchCode, BranchAddress, City, PhoneNumber) VALUES
+('Central Branch', 'BR001', 'Str. Universitatii 10', 'Cluj-Napoca', '0264111222'),
+('Unirii Branch', 'BR002', 'Bulevardul Titulescu 15', 'Bucuresti', '0213334444'),
+('Copou Branch', 'BR003', 'Bulevardul Titulescu 20', 'Iasi', '0232555666'),
+('Victory Square Branch', 'BR004', 'Calea Victoriei 12', 'Bucuresti', '0217778888');
+
+SELECT * FROM Branches;
+
+INSERT INTO AccountTypes (TypeName, InterestRate, MonthlyFee) VALUES
+('Standard Checking', 0.0000, 5.00),
+('Savings Account', 0.0350, 0.00),
+('Premium Checking', 0.0100, 15.00),
+('Student Account', 0.0050, 0.00);
+
+INSERT INTO Customers (FirstName, LastName, PersonalNumericCode, DateOfBirth, Email, PhoneNumber, CustomerAddress) VALUES
+('Ioan', 'Risca', '2950325432109', '1995-03-25', 'risca.ioan@yahoo.com', '0722333444', 'B-dul Libertatii 22, Bucuresti'),
+('Luca', 'Racoti', '1901114512388', '1990-11-14', 'luca.racoti@gmail.com', '0763444555', 'Str. Lapusna 3, Iasi'),
+('Alexandra', 'Popovici', '1980512123456', '1998-05-12', 'alexandra.popovici@gmail.com', '0740111222', 'Str. Memorandumului 5, Cluj-Napoca'),
+('Valeriu', 'Nistor', '2990708112233', '1999-07-08', 'valeriu.nist@gmail.com', '0751222333', 'Calea Dorobantilor 45, Bucuresti'),
+('Antonio', 'Russano', '1851204223344', '1985-12-04', 'a.russ@gmail.com', '0770889900', 'Str. Horei 12, Cluj-Napoca');
+
+INSERT INTO Employees (BranchID, FirstName, LastName, JobTitle, HireDate, Salary) VALUES
+(1, 'Ana', 'Munteanu', 'Branch Manager', '2015-06-01', 6500.00),
+(1, 'Ioana', 'Stancu', 'Cashier', '2020-03-15', 3200.00),
+(2, 'Radu', 'Constantin', 'Loan Officer', '2018-09-10', 4800.00),
+(3, 'Carmen', 'Vasile', 'Customer Advisor', '2021-01-20', 3500.00),
+(4, 'Mihai', 'Petrescu', 'Branch Manager', '2014-11-05', 7000.00);
+
+INSERT INTO Accounts (BranchID, AccountTypeID, AccountNumber, Balance, Currency, AccountStatus, OpenedDate) VALUES
+(1, 1, 'RO49RNCB0123456789010001', 2450.50, 'RON', 'Active', '2022-01-15'),
+(1, 2, 'RO49RNCB0123456789010002', 12500.00, 'RON', 'Active', '2022-02-20'),
+(2, 3, 'RO14BRDE4567891234560001', 45000.00, 'RON', 'Active', '2021-05-10'),
+(3, 4, 'RO55BTRL9876543210980001', 850.30, 'RON', 'Active', '2023-10-05'),
+(4, 1, 'RO88INGB1122334455660001', 3100.00, 'EUR', 'Active', '2023-03-12'),
+(2, 2, 'RO14BRDE4567891234560002', 23000.00, 'RON', 'Active', '2023-08-15');
+
+INSERT INTO CustomerAccounts (CustomerID, AccountID, AccountRole, LinkDate) VALUES
+(1, 1, 'Primary', '2022-01-15'),
+(1, 2, 'Primary', '2022-02-20'),
+(2, 3, 'Primary', '2021-05-10'),
+(3, 4, 'Primary', '2023-10-05'),
+(4, 5, 'Primary', '2023-03-12'),
+(2, 6, 'Primary', '2023-08-15'),
+(5, 6, 'Secondary', '2023-08-15');
+
+INSERT INTO Transactions (AccountID, TransactionType, Amount, TransactionDate, Description) VALUES
+(1, 'Deposit', 1000.00, '2026-01-10 10:30:00', 'Monthly Salary'),
+(1, 'Withdrawal', 200.00, '2026-01-12 14:15:00', 'ATM Withdrawal'),
+(2, 'Deposit', 5000.00, '2026-01-15 09:00:00', 'Savings deposit'),
+(3, 'Transfer', 1500.00, '2026-01-18 16:45:00', 'Rent payment'),
+(4, 'Withdrawal', 100.00, '2026-01-20 11:20:00', 'Supermarket purchase');
+
+INSERT INTO Cards (AccountID, CardNumber, CardType, ExpiryDate, CVV, IsActive) VALUES
+(1, '4532781293847561', 'Debit', '2028-05-30', '123', 1),
+(2, '5412758963251478', 'Credit', '2027-12-31', '456', 1),
+(3, '4000123456789010', 'Debit', '2029-03-31', '789', 1),
+(4, '5234567890123456', 'Debit', '2026-09-30', '321', 1);
+
+INSERT INTO Loans (CustomerID, BranchID, LoanAmount, InterestRate, TermInMonths, StartDate, LoanStatus) VALUES
+(1, 1, 25000.00, 0.0850, 60, '2023-06-01', 'Approved'),
+(2, 2, 120000.00, 0.0690, 300, '2021-08-15', 'Approved'),
+(3, 3, 10000.00, 0.0900, 24, '2024-02-10', 'Approved');
+
+INSERT INTO LoanPayments (LoanID, PaymentAmount, PaymentDate, PrincipalAmount, InterestAmount) VALUES
+(1, 515.50, '2026-01-05 10:00:00', 390.50, 125.00),
+(1, 515.50, '2026-02-05 10:00:00', 393.20, 122.30),
+(2, 850.00, '2026-01-10 11:30:00', 160.00, 690.00),
+(3, 456.00, '2026-01-15 12:00:00', 381.00, 75.00);
+GO
+
+SELECT * FROM Accounts;
+SELECT * FROM AccountTypes;
+SELECT * FROM Branches;
+SELECT * FROM Cards;
+SELECT * FROM CustomerAccounts;
+SELECT * FROM Customers;
+SELECT * FROM Employees;
+SELECT * FROM LoanPayments;
+SELECT * FROM Loans;
+SELECT * FROM Transactions;
+
+--ctustomers din Bucuresti m - n
+SELECT c.FirstName, c.LastName, c.Email, a.AccountNumber, a.Balance
+FROM Customers c
+JOIN CustomerAccounts ca ON c.CustomerID = ca.CustomerID
+JOIN Accounts a ON ca.AccountID = a.AccountID
+WHERE c.CustomerAddress LIKE '%Bucuresti%';
+
+
+--tranzactii > 500 m - n
+SELECT c.FirstName, c.LastName, a.AccountNumber, t.TransactionType, t.Amount, t.TransactionDate
+FROM Transactions t
+JOIN Accounts a ON t.AccountID = a.AccountID
+JOIN CustomerAccounts ca ON a.AccountID = ca.AccountID
+JOIN Customers c ON ca.CustomerID = c.CustomerID
+WHERE t.Amount > 500.00;
+
+
+--carduri care expira dupa 2026
+SELECT cr.CardNumber, cr.CardType, cr.ExpiryDate, a.AccountNumber, b.BranchName
+FROM Cards cr
+JOIN Accounts a ON cr.AccountID = a.AccountID
+JOIN Branches b ON a.BranchID = b.BranchID
+WHERE cr.IsActive = 1 AND cr.ExpiryDate > '2026-12-31';
+
+
+--conturi active cu balance > 1000 
+SELECT DISTINCT at.TypeName, at.InterestRate
+FROM AccountTypes at
+JOIN Accounts a ON at.AccountTypeID = a.AccountTypeID
+WHERE a.AccountStatus = 'Active' AND a.Balance > 1000.00;
+
+
+--employees din Cluj-Napoca cu salary > 3000 
+SELECT e.FirstName, e.LastName, e.JobTitle, e.Salary, b.BranchName, b.City
+FROM Employees e
+JOIN Branches b ON e.BranchID = b.BranchID
+WHERE b.City = 'Cluj-Napoca' AND e.Salary > 3000.00;
+
+
+--total balance grupate by branch si account type
+SELECT b.BranchName, at.TypeName, SUM(a.Balance) AS TotalBalance, COUNT(a.AccountID) AS TotalAccountsCount
+FROM Accounts a
+JOIN Branches b ON a.BranchID = b.BranchID
+JOIN AccountTypes at ON a.AccountTypeID = at.AccountTypeID
+GROUP BY b.BranchName, at.TypeName;
+
+
+--branches cu suma loan > 50000
+SELECT b.BranchName, COUNT(l.LoanID) AS NumberOfLoans, SUM(l.LoanAmount) AS TotalLoanPortfolio
+FROM Loans l
+JOIN Branches b ON l.BranchID = b.BranchID
+JOIN Customers c ON l.CustomerID = c.CustomerID
+GROUP BY b.BranchName
+HAVING SUM(l.LoanAmount) > 50000.00;
+
+
+--cccount types si branches unde media soldului > 5000
+SELECT at.TypeName, b.BranchName, AVG(a.Balance) AS AverageBalance
+FROM Accounts a
+JOIN AccountTypes at ON a.AccountTypeID = at.AccountTypeID
+JOIN Branches b ON a.BranchID = b.BranchID
+GROUP BY at.TypeName, b.BranchName
+HAVING AVG(a.Balance) > 5000.00;
+
+
+--jobs uri distincte ale angajatilor 
+SELECT DISTINCT JobTitle
+FROM Employees;
+
+--Plati de credite cu detalii complete
+SELECT lp.PaymentID, l.LoanID, c.FirstName + ' ' + c.LastName AS CustomerName, b.BranchName, lp.PaymentAmount, lp.PaymentDate
+FROM LoanPayments lp
+JOIN Loans l ON lp.LoanID = l.LoanID
+JOIN Customers c ON l.CustomerID = c.CustomerID
+JOIN Branches b ON l.BranchID = b.BranchID;USE BankManagement;
+GO
+
+-- tabelul de versionare
+IF OBJECT_ID('DatabaseVersion', 'U') IS NOT NULL
+    DROP TABLE DatabaseVersion;
+GO
+
+CREATE TABLE DatabaseVersion (
+    VersionID INT PRIMARY KEY
+);
+
+INSERT INTO DatabaseVersion (VersionID) VALUES 
+(0);
+GO
+
+-- modificarea tipului unei coloane
+GO
+CREATE PROCEDURE sp_UpgradeToV1 AS
+BEGIN
+    ALTER TABLE Branches ALTER COLUMN PhoneNumber VARCHAR(30);
+    PRINT 'Upgraded to V1: Modified Branches.PhoneNumber to VARCHAR(30).';
+END;
+GO
+
+CREATE PROCEDURE sp_DowngradeToV0 AS
+BEGIN
+    ALTER TABLE Branches ALTER COLUMN PhoneNumber VARCHAR(20);
+    PRINT 'Downgraded to V0: Reverted Branches.PhoneNumber to VARCHAR(20).';
+END;
+GO
+
+
+-- adauga constrangere
+CREATE PROCEDURE sp_UpgradeToV2 AS
+BEGIN
+    ALTER TABLE Customers ADD CONSTRAINT DF_Customers_CustomerAddress DEFAULT 'Not Provided' FOR CustomerAddress;
+    PRINT 'Upgraded to V2: Added DEFAULT constraint on Customers.CustomerAddress.';
+END;
+GO
+
+CREATE PROCEDURE sp_DowngradeToV1 AS
+BEGIN
+    ALTER TABLE Customers DROP CONSTRAINT DF_Customers_CustomerAddress;
+    PRINT 'Downgraded to V1: Dropped DEFAULT constraint on Customers.CustomerAddress.';
+END;
+GO
+
+
+-- crearea stergere auditlogs
+CREATE PROCEDURE sp_UpgradeToV3 AS
+BEGIN
+    CREATE TABLE AuditLogs (
+        LogID INT IDENTITY(1,1) PRIMARY KEY,
+        ActionDescription NVARCHAR(255) NOT NULL,
+        LogDate DATETIME DEFAULT GETDATE()
+    );
+    PRINT 'Upgraded to V3: Created table AuditLogs.';
+END;
+GO
+
+CREATE PROCEDURE sp_DowngradeToV2 AS
+BEGIN
+    DROP TABLE AuditLogs;
+    PRINT 'Downgraded to V2: Dropped table AuditLogs.';
+END;
+GO
+
+
+-- adauga camp nou
+CREATE PROCEDURE sp_UpgradeToV4 AS
+BEGIN
+    ALTER TABLE Branches ADD BranchRating DECIMAL(3,2) NULL;
+    PRINT 'Upgraded to V4: Added column BranchRating to Branches.';
+END;
+GO
+
+CREATE PROCEDURE sp_DowngradeToV3 AS
+BEGIN
+    ALTER TABLE Branches DROP COLUMN BranchRating;
+    PRINT 'Downgraded to V3: Dropped column BranchRating from Branches.';
+END;
+GO
+
+
+--constrangere pe o cheie straine
+CREATE PROCEDURE sp_UpgradeToV5 AS
+BEGIN
+    ALTER TABLE Cards DROP CONSTRAINT FK_Cards_Accounts;
+    PRINT 'Upgraded to V5: Dropped foreign key constraint FK_Cards_Accounts.';
+END;
+GO
+
+CREATE PROCEDURE sp_DowngradeToV4 AS
+BEGIN
+    ALTER TABLE Cards ADD CONSTRAINT FK_Cards_Accounts FOREIGN KEY (AccountID) REFERENCES Accounts(AccountID);
+    PRINT 'Downgraded to V4: Re-created foreign key constraint FK_Cards_Accounts.';
+END;
+GO
+
+
+-- procedura de tranzatie intre versiuni
+GO
+CREATE PROCEDURE sp_ChangeDatabaseVersion
+    @TargetVersion INT
+AS
+BEGIN
+    DECLARE @CurrentVersion INT;
+    
+
+    SELECT @CurrentVersion = VersionID 
+    FROM DatabaseVersion;
+
+    IF @TargetVersion < 0 OR @TargetVersion > 5
+    BEGIN
+        RAISERROR('Invalid target version!', 16, 1);
+        RETURN;
+    END
+
+    WHILE @CurrentVersion < @TargetVersion
+    BEGIN
+        IF @CurrentVersion = 0 
+        BEGIN 
+            EXEC sp_UpgradeToV1; 
+            UPDATE DatabaseVersion SET VersionID = 1; 
+        END
+        ELSE IF @CurrentVersion = 1 
+        BEGIN 
+            EXEC sp_UpgradeToV2; 
+            UPDATE DatabaseVersion SET VersionID = 2; 
+        END
+        ELSE IF @CurrentVersion = 2 
+        BEGIN 
+            EXEC sp_UpgradeToV3; 
+            UPDATE DatabaseVersion SET VersionID = 3; 
+        END
+        ELSE IF @CurrentVersion = 3 
+        BEGIN 
+            EXEC sp_UpgradeToV4; 
+            UPDATE DatabaseVersion SET VersionID = 4; 
+        END
+        ELSE IF @CurrentVersion = 4 
+        BEGIN 
+            EXEC sp_UpgradeToV5; 
+            UPDATE DatabaseVersion SET VersionID = 5; 
+        END
+        
+        SELECT @CurrentVersion = VersionID 
+        FROM DatabaseVersion;
+    END
+
+    WHILE @CurrentVersion > @TargetVersion
+    BEGIN
+        IF @CurrentVersion = 5 
+        BEGIN 
+            EXEC sp_DowngradeToV4; 
+            UPDATE DatabaseVersion SET VersionID = 4; 
+        END
+        ELSE IF @CurrentVersion = 4 
+        BEGIN 
+            EXEC sp_DowngradeToV3; 
+            UPDATE DatabaseVersion SET VersionID = 3; 
+        END
+        ELSE IF @CurrentVersion = 3 
+        BEGIN 
+            EXEC sp_DowngradeToV2; 
+            UPDATE DatabaseVersion SET VersionID = 2; 
+        END
+        ELSE IF @CurrentVersion = 2 
+        BEGIN 
+            EXEC sp_DowngradeToV1; 
+            UPDATE DatabaseVersion SET VersionID = 1; 
+        END
+        ELSE IF @CurrentVersion = 1 
+        BEGIN 
+            EXEC sp_DowngradeToV0; 
+            UPDATE DatabaseVersion SET VersionID = 0; 
+        END
+        
+        SELECT @CurrentVersion = VersionID FROM DatabaseVersion;
+    END
+
+    PRINT 'Database to version: ' + CAST(@TargetVersion AS VARCHAR(10));
+END;
+GO
+
+
+SELECT * FROM DatabaseVersion;
+
+EXEC sp_ChangeDatabaseVersion @TargetVersion = 0;
+GO
+
+SELECT * FROM Branches;
+
+EXEC sp_ChangeDatabaseVersion @TargetVersion = 1;
+GO
+
+EXEC sp_ChangeDatabaseVersion @TargetVersion = 2;
+GO
+
+EXEC sp_ChangeDatabaseVersion @TargetVersion = 3;
+GO
+
+EXEC sp_ChangeDatabaseVersion @TargetVersion = 4;
+GO
+
+EXEC sp_ChangeDatabaseVersion @TargetVersion = 5;
+GO
+
+EXEC sp_ChangeDatabaseVersion @TargetVersion = 0;
+GO

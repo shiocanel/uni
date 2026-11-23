@@ -1,0 +1,67 @@
+LABORATORUL 6 - PAGINARE
+
+PACHET
+Acest pachet contine intregul folder src/main/java reconstruit din exportul Lab 5 trimis in conversatie,
+plus modificarile Lab 6. Fisierele nemodificate au fost pastrate din exportul tau; fisierele modificate
+si clasele noi sunt deja integrate.
+
+INTEGRARE
+1. Fa o copie de siguranta a folderului src/main/java din proiectul tau.
+2. Extrage arhiva in radacina proiectului, astfel incat folderul src/main/java din arhiva sa ajunga
+   peste folderul src/main/java existent. Accepta inlocuirea fisierelor.
+3. Pastreaza build.gradle.kts, settings.gradle.kts si celelalte fisiere Gradle existente din Lab 5.
+4. In src/main/resources/config.properties adauga:
+
+       paging.page-size=5
+
+   Poti schimba 5 cu orice numar strict pozitiv. Proprietatea este obligatorie numai cand
+   repository.type=DATABASE. Pentru MEMORY si FILE, aplicatia pastreaza afisarea completa, fara paginare.
+5. Deschide/reincarca proiectul Gradle si ruleaza Main.
+
+NAVIGARE IN CONSOLA
+- n = pagina urmatoare
+- p = pagina precedenta
+- q = intoarcere la meniul principal
+
+MENIUL
+- Optiunea 1: lista utilizatorilor; paginata in DATABASE si completa in MEMORY/FILE.
+- Optiunea 10: introduci ID-ul unui utilizator si vezi prietenii lui; paginata in DATABASE si completa
+  in MEMORY/FILE.
+- Optiunea 6 continua sa afiseze toate relatiile de prietenie, ca in Lab 5.
+
+IMPLEMENTARE
+- util.paging.Pageable valideaza pageNumber >= 0 si pageSize > 0 si calculeaza OFFSET-ul.
+- util.paging.Page pastreaza lista paginii si numarul total de elemente.
+- PagingRepository extinde Repository si declara findAllOnPage.
+- UserDbRepository foloseste ORDER BY id LIMIT ? OFFSET ? si COUNT(*) pe aceeasi conexiune JDBC.
+- FriendshipPagingRepository defineste operatia specializata pentru prietenii unui utilizator.
+- FriendshipDbRepository obtine utilizatorii-prieteni printr-o singura comanda SQL cu JOIN users,
+  conditia id1 = ? OR id2 = ?, LIMIT si OFFSET. CTE-ul returneaza si totalul chiar daca pagina este goala
+  sau utilizatorul nu are prieteni.
+- SocialNetworkService expune operatiile de paginare fara sa contina SQL.
+- ConsoleUI contine doar navigarea si afisarea, fara SQL.
+- RepositoryFactory citeste paging.page-size din config.properties numai in modul DATABASE.
+
+VERIFICARE LA PREDARE
+1. Seteaza repository.type=DATABASE si paging.page-size=5.
+2. Alege optiunea 1: verifica pagina 1, n, p si textul "Pagina x din y".
+3. Adauga un utilizator nou; redeschide optiunea 1 si verifica daca totalul/paginile s-au actualizat.
+4. Sterge un utilizator; redeschide lista si verifica din nou totalul/paginile.
+5. Alege optiunea 10, introdu ID-ul unui utilizator cu mai multi prieteni si navigheaza intre pagini.
+6. Alege un utilizator fara prieteni; rezultatul trebuie sa fie gol, cu "Pagina 0 din 0".
+7. Verifica si o pagina in afara intervalului: repository-ul trebuie sa intoarca o lista goala,
+   pastrand totalNumberOfElements corect.
+8. Schimba repository.type in MEMORY si FILE: lista utilizatorilor si lista prietenilor trebuie sa
+   ramana afisate complet, fara navigare paginata.
+9. Pageable(-1, 5) si Pageable(0, 0) trebuie sa arunce IllegalArgumentException.
+
+LIMITARI ALE EXPORTULUI PRIMIT
+Exportul map(1).txt continea sursele Java, dar nu includea build.gradle.kts, settings.gradle.kts,
+config.properties sau config.example.properties. Aceste fisiere nu au fost reconstruite ori inlocuite.
+Pastraza configuratia Lab 5 existenta si adauga doar proprietatea paging.page-size de mai sus.
+
+TESTE EXECUTATE AICI
+- Toate cele 34 de fisiere Java din src/main/java au fost compilate cu javac -source 8 -target 8.
+- Au trecut teste smoke pentru validarea Pageable, calcularea offset-ului, numarul de pagini, pagini goale
+  si compatibilitatea serviciului cu repository-urile MEMORY.
+- Testul SQL cap-coada necesita baza PostgreSQL si configuratia ta locala, care nu au fost incluse in export.
